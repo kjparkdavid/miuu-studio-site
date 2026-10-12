@@ -26,7 +26,8 @@ export default function HomePage({ locale }: { locale: Locale }) {
               </a>
             </div>
             <dl className="mt-10 flex flex-wrap gap-x-10 gap-y-4">
-              <Stat value={STATS.followers} label={t.statFollowers} />
+              <Stat value={STATS.instagram} label={t.statInstagram} />
+              <Stat value={STATS.tiktok} label={t.statTiktok} />
               <Stat value={STATS.downloads} label={t.statDownloads} />
             </dl>
           </div>

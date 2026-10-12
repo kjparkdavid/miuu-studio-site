@@ -7,8 +7,8 @@ export const LINKS = {
   email: "support@miuustudio.com",
 };
 
-// Follower count from @miuustudio (2026-09-25); downloads from the Play Console (2026-10-09)
-export const STATS = { followers: "230K+", downloads: "1.8M+" };
+// Follower counts from the owner (2026-10-11); downloads from the Play Console (2026-10-09)
+export const STATS = { instagram: "230K+", tiktok: "210K+", downloads: "1.8M+" };
 
 // ---- Characters (art from the app: secret-note/assets/miuu)
 
@@ -19,8 +19,8 @@ export const CHARACTERS: Character[] = [
     id: "miuu",
     name: { en: "Miuu", ko: "미유" },
     bio: {
-      en: "An alien kitty from Catty Planet, now in New York. Always positive, a little clueless, never without his yellow bag.",
-      ko: "캐띠 행성에서 온 외계 고양이. 지금은 뉴욕에 살아요. 늘 긍정적이고 살짝 엉뚱해요. 노란 가방은 꼭 챙겨요.",
+      en: "An alien kitty from Catty Planet, now living on Earth. Always positive, a little clueless, never without his yellow bag.",
+      ko: "캐띠 행성에서 온 외계 고양이. 지금은 지구에 살아요. 늘 긍정적이고 살짝 엉뚱해요. 노란 가방은 꼭 챙겨요.",
     },
     bg: "bg-lilac",
   },
@@ -28,8 +28,8 @@ export const CHARACTERS: Character[] = [
     id: "miyomi",
     name: { en: "Miyomi", ko: "미요미" },
     bio: {
-      en: "Cool, quiet and secretly rich. Says very little, but always has Miuu's back.",
-      ko: "말수 적고 쿨한 부자 고양이. 티는 안 내도 늘 미유 편이에요.",
+      en: "Miuu's roommate and girlfriend. Cool, quiet and secretly rich.",
+      ko: "미유의 룸메이트이자 여자친구. 말수 적고 쿨한 숨은 부자예요.",
     },
     bg: "bg-blush",
   },
@@ -46,8 +46,8 @@ export const CHARACTERS: Character[] = [
     id: "kiki",
     name: { en: "Kiki", ko: "키키" },
     bio: {
-      en: "A tiny calico show-off. Miuu took him in on a rainy day.",
-      ko: "자랑이 특기인 꼬마 삼색 고양이. 비 오는 날 미유가 데려왔어요.",
+      en: "An innocent baby calico. Miuu took him in on a rainy day.",
+      ko: "천진난만한 아기 삼색 고양이. 비 오는 날 미유가 데려왔어요.",
     },
     bg: "bg-butter",
   },
@@ -132,8 +132,8 @@ export const SERIES: Series[] = [
     id: "daily",
     title: { en: "Little Days", ko: "소소한 하루" },
     blurb: {
-      en: "Short comics about Miuu, Miyomi and Kiki.",
-      ko: "미유, 미요미, 키키의 짧은 일상 만화.",
+      en: "Short comics about Miuu, Miyomi and Kiki. Each one stands on its own.",
+      ko: "미유, 미요미, 키키의 짧은 일상 만화. 한 편씩 끝나는 이야기예요.",
     },
     episodes: [
       { slug: "investment", title: { en: "Miyomi's Investment", ko: "미요미의 투자" }, pages: { en: 14 } },
