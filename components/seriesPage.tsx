@@ -21,6 +21,7 @@ export default function SeriesPage({ locale, id }: { locale: Locale; id: string 
           ← {t.readerBack}
         </Link>
         <h1 className="mt-6 font-display text-4xl font-extrabold sm:text-5xl">{s.title[locale]}</h1>
+        <p className="mt-1 text-sm font-semibold text-violet">{t.serialized(s.years)}</p>
         <p className="mt-3 text-ink/70">{s.blurb[locale]}</p>
 
         <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">

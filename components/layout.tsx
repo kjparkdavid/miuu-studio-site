@@ -51,6 +51,7 @@ export default function Layout({ locale, path, title, description, image = "/bra
               <Link href={localePath(locale, "/comics/")} className="rounded-full px-3 py-2 hover:bg-lilac">{t.navComics}</Link>
               <a href={`${home}#reels`} className="rounded-full px-3 py-2 hover:bg-lilac">{t.navReels}</a>
               <a href={`${home}#apps`} className="rounded-full px-3 py-2 hover:bg-lilac">{t.navApps}</a>
+              <a href={`${home}#collab`} className="rounded-full px-3 py-2 hover:bg-lilac">{t.navCollab}</a>
             </div>
             <Link
               href={localePath(other, path)}
@@ -77,6 +78,7 @@ export default function Layout({ locale, path, title, description, image = "/bra
                 ["Instagram", LINKS.instagram],
                 ["TikTok", LINKS.tiktok],
                 ["YouTube", LINKS.youtube],
+                ["GIPHY", LINKS.giphy],
               ].map(([name, href]) => (
                 <a key={name} href={href} target="_blank" rel="noopener" className="pill bg-white/10 text-white hover:bg-white/20">
                   {name}

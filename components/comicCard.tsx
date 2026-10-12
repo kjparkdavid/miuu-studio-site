@@ -29,9 +29,13 @@ export function SeriesCard({ series, locale }: { series: Series; locale: Locale 
   const t = UI[locale];
   return (
     <Link href={localePath(locale, seriesPath(series))} className={cardClass}>
-      <Cover src={comicCover(series.episodes[0], locale)} label={t.episodes(series.episodes.length)} />
+      <Cover
+        src={comicCover(series.episodes[0], locale)}
+        label={(series.standalone ? t.stories : t.episodes)(series.episodes.length)}
+      />
       <div className="p-4">
         <h3 className="font-display text-lg font-extrabold leading-snug">{series.title[locale]}</h3>
+        <p className="mt-0.5 text-xs font-semibold text-violet">{t.serialized(series.years)}</p>
         <p className="mt-1 text-sm leading-relaxed text-ink/65">{series.blurb[locale]}</p>
       </div>
     </Link>
@@ -43,7 +47,7 @@ export function EpisodeCard({ series, ep, n, locale }: { series: Series; ep: Epi
   const lang = episodeLang(ep, locale);
   return (
     <Link href={localePath(locale, episodePath(series, ep))} className={cardClass}>
-      <Cover src={comicCover(ep, locale)} label={t.episodeN(n)} />
+      <Cover src={comicCover(ep, locale)} label={series.standalone ? undefined : t.episodeN(n)} />
       <div className="flex items-start justify-between gap-2 p-3">
         <h3 className="text-sm font-bold leading-snug">{ep.title[locale]}</h3>
         <span className="shrink-0 pt-0.5 text-xs text-ink/50">

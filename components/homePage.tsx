@@ -25,6 +25,10 @@ export default function HomePage({ locale }: { locale: Locale }) {
               <a href={LINKS.instagram} target="_blank" rel="noopener" className="pill bg-white text-ink ring-1 ring-ink/10 hover:ring-violet">
                 {t.heroCtaInstagram}
               </a>
+              <a href={LINKS.miuuNote} target="_blank" rel="noopener" className="pill bg-white text-ink ring-1 ring-ink/10 hover:ring-violet">
+                <img src="/apps/miuu-note-icon.webp" alt="" width={256} height={256} className="h-5 w-5 rounded-md" />
+                {t.heroCtaApp}
+              </a>
             </div>
             <dl className="mt-10 flex flex-wrap gap-x-10 gap-y-4">
               <Stat value={STATS.instagram} label={t.statInstagram} />
@@ -42,7 +46,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
 
       {/* Characters */}
       <section id="characters" className="section scroll-mt-20 pt-20">
-        <SectionHead eyebrow={t.charactersEyebrow} title={t.charactersTitle} />
+        <SectionHead eyebrow={t.charactersEyebrow} title={t.charactersTitle} gif="miuu-miyomi-lean" />
         <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
           {CHARACTERS.map((c, i) => (
             <article
@@ -67,7 +71,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
       {/* Comics */}
       <section id="comics" className="section scroll-mt-20 pt-20">
         <div className="flex flex-wrap items-end justify-between gap-4">
-          <SectionHead eyebrow={t.comicsEyebrow} title={t.comicsTitle} body={t.comicsBody} />
+          <SectionHead eyebrow={t.comicsEyebrow} title={t.comicsTitle} body={t.comicsBody} gif="miuu-arrested" />
           <Link href={localePath(locale, "/comics/")} className="pill bg-white ring-1 ring-ink/10 hover:ring-violet">
             {t.comicsAll} →
           </Link>
@@ -82,7 +86,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
       {/* Reels */}
       <section id="reels" className="scroll-mt-20 pt-20">
         <div className="section flex flex-wrap items-end justify-between gap-4">
-          <SectionHead eyebrow={t.reelsEyebrow} title={t.reelsTitle} />
+          <SectionHead eyebrow={t.reelsEyebrow} title={t.reelsTitle} gif="miuu-dance" />
           <a href={LINKS.instagram} target="_blank" rel="noopener" className="pill bg-white ring-1 ring-ink/10 hover:ring-violet">
             {t.reelsMore} →
           </a>
@@ -114,7 +118,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
 
       {/* Apps */}
       <section id="apps" className="section scroll-mt-20 pt-20">
-        <SectionHead eyebrow={t.appsEyebrow} title={t.appsTitle} />
+        <SectionHead eyebrow={t.appsEyebrow} title={t.appsTitle} gif="miuu-waddle" />
         <div className="mt-8 grid gap-4 lg:grid-cols-[1.6fr_1fr]">
           {APPS.map((app, i) => (
             <article
@@ -158,7 +162,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
                       loading="lazy"
                       width={600}
                       height={1300}
-                      className="w-1/3 max-w-[180px] rounded-2xl border-4 border-white shadow-card"
+                      className="w-1/3 max-w-[180px] rounded-[38px] border-[5px] border-white bg-white shadow-card"
                     />
                   ))}
                 </div>
@@ -167,16 +171,50 @@ export default function HomePage({ locale }: { locale: Locale }) {
           ))}
         </div>
       </section>
+
+      {/* Brand collabs */}
+      <section id="collab" className="section scroll-mt-20 pt-20">
+        <div className="relative overflow-hidden rounded-[32px] bg-night px-6 py-10 text-white sm:px-10 sm:py-14">
+          <img src="/gifs/miuu-wizard.webp" alt="" width={320} height={320} loading="lazy" className="absolute -bottom-2 end-4 hidden h-40 w-40 sm:block lg:h-52 lg:w-52" />
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-violet-soft">{t.collabEyebrow}</p>
+          <h2 className="mt-2 max-w-xl font-display text-3xl font-extrabold sm:text-4xl">{t.collabTitle}</h2>
+          <p className="mt-3 max-w-xl leading-relaxed text-white/75">{t.collabBody}</p>
+          <ul className="mt-8 grid max-w-3xl gap-3 sm:grid-cols-3">
+            {t.collabItems.map(([title, body]) => (
+              <li key={title} className="rounded-2xl bg-white/10 p-4">
+                <h3 className="font-bold">{title}</h3>
+                <p className="mt-1 text-sm leading-relaxed text-white/70">{body}</p>
+              </li>
+            ))}
+          </ul>
+          <a
+            href={`mailto:${LINKS.email}?subject=${encodeURIComponent("Brand collaboration with Miuu")}`}
+            className="pill mt-8 bg-white text-ink hover:bg-lilac"
+          >
+            {t.collabCta} →
+          </a>
+        </div>
+      </section>
     </Layout>
   );
 }
 
-function SectionHead({ eyebrow, title, body }: { eyebrow: string; title: string; body?: string }) {
+// gif: an animated Miuu from public/gifs/<name>.webp next to the title
+function SectionHead({ eyebrow, title, body, gif }: { eyebrow: string; title: string; body?: string; gif?: string }) {
   return (
-    <div>
-      <p className="eyebrow">{eyebrow}</p>
-      <h2 className="mt-2 font-display text-3xl font-extrabold sm:text-4xl">{title}</h2>
-      {body && <p className="mt-2 text-ink/70">{body}</p>}
+    <div className="flex items-end gap-3">
+      <div>
+        <p className="eyebrow">{eyebrow}</p>
+        <h2 className="mt-2 font-display text-3xl font-extrabold sm:text-4xl">{title}</h2>
+        {body && <p className="mt-2 text-ink/70">{body}</p>}
+      </div>
+      {gif && (
+        <span className="relative -mb-2 shrink-0">
+          {/* soft lilac glow behind the gif */}
+          <span className="absolute inset-2 rounded-full bg-lilac blur-md" aria-hidden />
+          <img src={`/gifs/${gif}.webp`} alt="" width={320} height={320} loading="lazy" className="relative h-20 w-20 sm:h-24 sm:w-24" />
+        </span>
+      )}
     </div>
   );
 }

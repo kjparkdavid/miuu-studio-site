@@ -4,7 +4,9 @@ export const LINKS = {
   instagram: "https://www.instagram.com/miuustudio/",
   tiktok: "https://www.tiktok.com/@miuustudio",
   youtube: "https://www.youtube.com/@miuustudio",
+  giphy: "https://giphy.com/miuustudio",
   email: "support@miuustudio.com",
+  miuuNote: "https://miuunote.site/",
 };
 
 // Follower counts from the owner (2026-10-11); downloads from the Play Console (2026-10-09)
@@ -28,8 +30,8 @@ export const CHARACTERS: Character[] = [
     id: "miyomi",
     name: { en: "Miyomi", ko: "미요미" },
     bio: {
-      en: "Miuu's roommate and girlfriend. Cool, quiet and secretly rich.",
-      ko: "미유의 룸메이트이자 여자친구. 말수 적고 쿨한 숨은 부자예요.",
+      en: "The friend Miuu met on Earth, now his roommate and girlfriend. Cool, quiet and secretly rich.",
+      ko: "미유가 지구에서 만난 친구. 지금은 룸메이트이자 여자친구예요. 말수 적고 쿨한 숨은 부자.",
     },
     bg: "bg-blush",
   },
@@ -75,6 +77,10 @@ export type Series = {
   id: string;
   title: L;
   blurb: L;
+  // when it ran on Instagram
+  years: string;
+  // stand-alone shorts: no "Ep. N" numbering
+  standalone?: boolean;
   episodes: Episode[];
 };
 
@@ -82,6 +88,7 @@ export const SERIES: Series[] = [
   {
     id: "origin",
     title: { en: "Miuu Original Story", ko: "미유 오리지널 스토리" },
+    years: "2024",
     blurb: {
       en: "How a kitty from Catty Planet ended up on Earth, and found a family.",
       ko: "캐띠 행성의 고양이가 지구에 와서 가족을 찾기까지.",
@@ -109,6 +116,7 @@ export const SERIES: Series[] = [
   {
     id: "new-york",
     title: { en: "Miuu in New York", ko: "뉴욕의 미유" },
+    years: "2025",
     blurb: {
       en: "One small cat, one very big city.",
       ko: "작은 고양이와 아주 큰 도시.",
@@ -125,6 +133,7 @@ export const SERIES: Series[] = [
   {
     id: "donut",
     title: { en: "Miuu's Donut Worry", ko: "미유의 도넛 가게" },
+    years: "2026",
     blurb: {
       en: "Miuu opens his very own donut shop. What could go wrong?",
       ko: "미유가 드디어 자기 도넛 가게를 열었어요. 별일 없겠죠?",
@@ -138,6 +147,8 @@ export const SERIES: Series[] = [
   {
     id: "daily",
     title: { en: "Little Days", ko: "소소한 하루" },
+    years: "2024–2026",
+    standalone: true,
     blurb: {
       en: "Short comics about Miuu, Miyomi and Kiki. Each one stands on its own.",
       ko: "미유, 미요미, 키키의 짧은 일상 만화. 한 편씩 끝나는 이야기예요.",

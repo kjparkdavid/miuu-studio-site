@@ -28,7 +28,7 @@ export default function ComicReader({ locale, seriesId, slug }: { locale: Locale
         <Link href={localePath(locale, seriesPath(series))} className="text-sm font-semibold text-violet hover:underline">
           ← {series.title[locale]}
         </Link>
-        <p className="eyebrow mt-6">{t.episodeN(index + 1)}</p>
+        <p className="eyebrow mt-6">{series.standalone ? series.title[locale] : t.episodeN(index + 1)}</p>
         <h1 className="mt-1 font-display text-3xl font-extrabold">{ep.title[locale]}</h1>
         {fallback ? (
           <p className="mt-3 rounded-xl bg-butter px-4 py-3 text-sm">{t.readerOnlyEnglish}</p>
@@ -65,7 +65,7 @@ export default function ComicReader({ locale, seriesId, slug }: { locale: Locale
           )}
           {next ? (
             <Link href={localePath(locale, episodePath(series, next))} className="rounded-2xl bg-violet p-4 text-right text-white hover:bg-violet-deep">
-              <span className="text-xs text-white/70">{t.readerNext} →</span>
+              <span className="text-xs text-white/70">{series.standalone ? t.readerNextStory : t.readerNext} →</span>
               <span className="mt-1 block text-sm font-bold">{next.title[locale]}</span>
             </Link>
           ) : (
