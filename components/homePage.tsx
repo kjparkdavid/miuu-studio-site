@@ -3,6 +3,7 @@ import Layout from "@/components/layout";
 import { SeriesCard } from "@/components/comicCard";
 import { APPS, CHARACTERS, LINKS, REELS, SERIES, STATS } from "@/lib/content";
 import { Locale, UI, localePath } from "@/lib/i18n";
+import { Cloud, Heart, Planet, Sparkle, Star, Wave } from "@/components/doodles";
 
 export default function HomePage({ locale }: { locale: Locale }) {
   const t = UI[locale];
@@ -11,8 +12,8 @@ export default function HomePage({ locale }: { locale: Locale }) {
     <Layout locale={locale} path="/" title={t.metaTitle} description={t.metaDescription}>
       {/* Hero */}
       <section className="relative overflow-hidden bg-gradient-to-b from-lilac to-canvas">
-        <Stars />
-        <div className="section relative grid items-center gap-10 py-14 md:grid-cols-[1.1fr_1fr] md:py-24">
+        <HeroDoodles />
+        <div className="section relative grid items-center gap-10 pb-20 pt-14 md:grid-cols-[1.1fr_1fr] md:pb-28 md:pt-24">
           <div>
             <p className="eyebrow">{t.heroEyebrow}</p>
             <h1 className="mt-4 font-display text-4xl font-extrabold leading-[1.1] sm:text-5xl lg:text-6xl">{t.heroTitle}</h1>
@@ -36,6 +37,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
             <img src="/brand/miuu-wave.webp" alt="Miuu waving" width={342} height={342} className="relative w-full animate-float-slow" />
           </div>
         </div>
+        <Wave fill="#FAF8FF" className="absolute inset-x-0 bottom-0 h-10 w-full sm:h-14" />
       </section>
 
       {/* Characters */}
@@ -189,19 +191,23 @@ function Stat({ value, label }: { value: string; label: string }) {
   );
 }
 
-// a few twinkling dots for the Catty Planet sky
-function Stars() {
-  const dots = [
-    [8, 18], [22, 70], [35, 12], [48, 85], [62, 22], [78, 60], [90, 15], [70, 88], [15, 45], [55, 50],
+// little hand-drawn doodles (sparkles, stars, a heart, a planet, clouds) around the hero
+function HeroDoodles() {
+  const items: [typeof Star, string, string][] = [
+    [Sparkle, "start-[6%] top-[12%] hidden h-7 w-7 animate-twinkle md:block", "0s"],
+    [Star, "start-[44%] top-[9%] hidden h-6 w-6 animate-twinkle md:block", "0.4s"],
+    [Heart, "end-[7%] top-[46%] h-7 w-7 animate-float", "0.2s"],
+    [Sparkle, "end-[6%] top-[4%] h-5 w-5 animate-twinkle md:end-[30%] md:top-[14%]", "1.1s"],
+    [Planet, "start-[3%] bottom-[22%] h-12 w-12 animate-float-slow", "0s"],
+    [Star, "end-[4%] bottom-[26%] h-5 w-5 animate-twinkle", "0.7s"],
+    [Sparkle, "start-[40%] bottom-[20%] hidden h-4 w-4 animate-twinkle md:block", "1.6s"],
   ];
   return (
-    <div className="pointer-events-none absolute inset-0" aria-hidden>
-      {dots.map(([x, y], i) => (
-        <span
-          key={i}
-          className="absolute h-1.5 w-1.5 animate-twinkle rounded-full bg-violet-soft"
-          style={{ left: `${x}%`, top: `${y}%`, animationDelay: `${(i % 5) * 0.6}s` }}
-        />
+    <div className="pointer-events-none absolute inset-0 text-ink" aria-hidden>
+      <Cloud className="absolute start-[58%] top-[6%] hidden h-10 w-20 animate-float-slow md:block" />
+      <Cloud className="absolute end-[2%] top-[70%] hidden h-8 w-16 animate-float md:block" />
+      {items.map(([C, cls, delay], i) => (
+        <C key={i} className={`absolute ${cls}`} style={{ animationDelay: delay }} />
       ))}
     </div>
   );
