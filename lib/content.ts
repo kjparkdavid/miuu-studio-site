@@ -188,14 +188,19 @@ export function comicPages(ep: Episode, locale: Locale) {
   return Array.from({ length: ep.pages[lang] ?? 0 }, (_, i) => `/comic-art/${ep.slug}/${lang}/${String(i + 1).padStart(2, "0")}.jpg`);
 }
 
-// ---- Reels, newest first. Files in public/reels/<id>.mp4 + <id>.jpg poster
+// ---- Reels: the most-watched @miuustudio reels (Instagram view counts, 2026-10-12).
+// Files in public/reels/<id>.mp4 + <id>.jpg poster
 
-export type Reel = { id: string; title: L };
+export type Reel = { id: string; title: L; views: string; url: string };
+
+const reel = (code: string) => `https://www.instagram.com/reel/${code}/`;
 
 export const REELS: Reel[] = [
-  { id: "acorn-chase", title: { en: "Acorn chase", ko: "도토리 추격전" } },
-  { id: "sky-angel", title: { en: "Sky ride", ko: "하늘 드라이브" } },
-  { id: "submarine", title: { en: "Submarine smack", ko: "잠수함 대소동" } },
+  { id: "pizza", title: { en: "Left one piece for you", ko: "한 조각 남겨뒀어" }, views: "15M", url: reel("CwoK246sUXL") },
+  { id: "piano", title: { en: "My life was beautiful..", ko: "내 인생은 아름다웠어.." }, views: "11.9M", url: reel("CvYCdTkRn4j") },
+  { id: "lil-fish", title: { en: "Lil fish stole my diary", ko: "물고기가 일기장을 훔쳐갔어" }, views: "9.3M", url: reel("DeC3qQSyv3R") },
+  { id: "daily-routine", title: { en: "Daily routine", ko: "하루 루틴" }, views: "7.3M", url: reel("CwMH7vQssCG") },
+  { id: "lighter-heart", title: { en: "A lighter heart today", ko: "오늘은 마음 가볍게" }, views: "7.2M", url: reel("DVcIzaxCTb1") },
 ];
 
 // ---- Apps

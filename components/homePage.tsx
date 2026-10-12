@@ -87,7 +87,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
         </div>
         {/* sideways scroller on phones, grid from md up */}
         <div className="mt-8 overflow-x-auto pb-4 [scrollbar-width:none]">
-          <div className="section flex snap-x snap-mandatory gap-4 md:grid md:grid-cols-3 md:gap-6 lg:max-w-4xl">
+          <div className="section flex snap-x snap-mandatory gap-4 md:grid md:grid-cols-5 md:gap-4">
             {REELS.map((r) => (
               <figure key={r.id} className="w-44 shrink-0 snap-start md:w-auto">
                 <video
@@ -98,7 +98,12 @@ export default function HomePage({ locale }: { locale: Locale }) {
                   playsInline
                   className="aspect-[9/16] w-full rounded-2xl bg-night object-cover shadow-card"
                 />
-                <figcaption className="mt-2 text-sm font-semibold">{r.title[locale]}</figcaption>
+                <figcaption className="mt-2 flex items-start justify-between gap-2 text-sm">
+                  <span className="font-semibold">{r.title[locale]}</span>
+                  <a href={r.url} target="_blank" rel="noopener" className="shrink-0 text-xs text-violet hover:underline">
+                    {t.views(r.views)} ↗
+                  </a>
+                </figcaption>
               </figure>
             ))}
           </div>
