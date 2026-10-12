@@ -39,8 +39,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
           </div>
           <div className="relative mx-auto w-full max-w-sm">
             {/* soft round backdrop behind Miuu */}
-            <div className="absolute inset-[6%] rounded-full bg-gradient-to-b from-white via-white/90 to-lilac shadow-[0_30px_60px_-30px_rgba(106,28,246,0.35)]" aria-hidden />
-            <div className="absolute inset-[1%] rounded-full border-2 border-dashed border-violet-soft/50" aria-hidden />
+            <div className="absolute -inset-[8%] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.85)_0%,rgba(255,255,255,0.45)_38%,rgba(201,182,255,0.18)_55%,transparent_70%)]" aria-hidden />
             <img src="/brand/miuu-wave.webp" alt="Miuu waving" width={342} height={342} className="relative w-full animate-float-slow" />
           </div>
         </div>
