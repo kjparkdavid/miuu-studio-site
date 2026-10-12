@@ -9,8 +9,9 @@ export const LINKS = {
   miuuNote: "https://miuunote.site/",
 };
 
-// Follower counts from the owner (2026-10-11); downloads from the Play Console (2026-10-09)
-export const STATS = { instagram: "230K+", tiktok: "210K+", downloads: "1.8M+" };
+// Follower counts from the owner (2026-10-11), YouTube subscribers from the channel page (2026-10-12);
+// downloads from the Play Console (2026-10-09)
+export const STATS = { instagram: "230K+", tiktok: "210K+", youtube: "11K+", downloads: "1.8M+" };
 
 // ---- Characters (art from the app: secret-note/assets/miuu)
 

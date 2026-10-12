@@ -33,6 +33,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
             <dl className="mt-10 flex flex-wrap gap-x-10 gap-y-4">
               <Stat value={STATS.instagram} label={t.statInstagram} />
               <Stat value={STATS.tiktok} label={t.statTiktok} />
+              <Stat value={STATS.youtube} label={t.statYoutube} />
               <Stat value={STATS.downloads} label={t.statDownloads} />
             </dl>
           </div>
@@ -46,7 +47,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
 
       {/* Characters */}
       <section id="characters" className="section scroll-mt-20 pt-20">
-        <SectionHead eyebrow={t.charactersEyebrow} title={t.charactersTitle} gif="miuu-miyomi-lean" />
+        <SectionHead eyebrow={t.charactersEyebrow} title={t.charactersTitle} gif="miuu-trio" />
         <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
           {CHARACTERS.map((c, i) => (
             <article
@@ -118,7 +119,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
 
       {/* Apps */}
       <section id="apps" className="section scroll-mt-20 pt-20">
-        <SectionHead eyebrow={t.appsEyebrow} title={t.appsTitle} gif="miuu-waddle" />
+        <SectionHead eyebrow={t.appsEyebrow} title={t.appsTitle} gif="miuu-miyomi-hug" />
         <div className="mt-8 grid gap-4 lg:grid-cols-[1.6fr_1fr]">
           {APPS.map((app, i) => (
             <article
