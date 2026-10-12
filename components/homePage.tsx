@@ -39,7 +39,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
           </div>
           <div className="relative mx-auto w-full max-w-sm">
             {/* soft round backdrop behind Miuu */}
-            <div className="absolute -inset-[8%] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.85)_0%,rgba(255,255,255,0.45)_38%,rgba(201,182,255,0.18)_55%,transparent_70%)]" aria-hidden />
+            <div className="absolute -inset-[8%] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,1)_0%,rgba(255,255,255,0.75)_35%,rgba(201,182,255,0.35)_55%,transparent_72%)]" aria-hidden />
             <img src="/brand/miuu-wave.webp" alt="Miuu waving" width={342} height={342} className="relative w-full animate-float-slow" />
           </div>
         </div>
@@ -73,7 +73,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
       {/* Comics */}
       <section id="comics" className="section scroll-mt-20 pt-20">
         <div className="flex flex-wrap items-end justify-between gap-4">
-          <SectionHead eyebrow={t.comicsEyebrow} title={t.comicsTitle} body={t.comicsBody} gif="miuu-arrested" />
+          <SectionHead eyebrow={t.comicsEyebrow} title={t.comicsTitle} body={t.comicsBody} gif="miuu-balloon" />
           <Link href={localePath(locale, "/comics/")} className="pill bg-white ring-1 ring-ink/10 hover:ring-violet">
             {t.comicsAll} →
           </Link>
