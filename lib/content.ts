@@ -81,7 +81,7 @@ export type Series = {
 export const SERIES: Series[] = [
   {
     id: "origin",
-    title: { en: "Miuu's Story", ko: "미유 이야기" },
+    title: { en: "Miuu Original Story", ko: "미유 오리지널 스토리" },
     blurb: {
       en: "How a kitty from Catty Planet ended up on Earth, and found a family.",
       ko: "캐띠 행성의 고양이가 지구에 와서 가족을 찾기까지.",
