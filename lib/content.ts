@@ -91,6 +91,7 @@ export const SERIES: Series[] = [
       { slug: "new-family-1", title: { en: "New Family! Part 1", ko: "새 가족 1편" }, pages: { en: 10, ko: 10 } },
       { slug: "new-family-2", title: { en: "New Family! Part 2", ko: "새 가족 2편" }, pages: { en: 10 } },
       { slug: "alley-cats", title: { en: "Meeting the Alley Cats", ko: "골목 고양이들" }, pages: { en: 10 } },
+      { slug: "dream", title: { en: "Dream...", ko: "꿈" }, pages: { en: 8 } },
       { slug: "detective", title: { en: "Cat Detective Agency", ko: "고양이 탐정 사무소" }, pages: { en: 10 } },
       { slug: "first-shift", title: { en: "First Shift", ko: "첫 출근" }, pages: { en: 10 } },
       { slug: "lab", title: { en: "To the Lab", ko: "연구소로" }, pages: { en: 10 } },
