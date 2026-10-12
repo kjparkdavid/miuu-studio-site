@@ -196,8 +196,6 @@ export const REELS: Reel[] = [
   { id: "acorn-chase", title: { en: "Acorn chase", ko: "도토리 추격전" } },
   { id: "sky-angel", title: { en: "Sky ride", ko: "하늘 드라이브" } },
   { id: "submarine", title: { en: "Submarine smack", ko: "잠수함 대소동" } },
-  { id: "diamond-mining", title: { en: "Just a chill cat mining", ko: "느긋하게 다이아 캐기" } },
-  { id: "gold-coins", title: { en: "Counting coins", ko: "금화 세는 중" } },
 ];
 
 // ---- Apps

@@ -87,7 +87,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
         </div>
         {/* sideways scroller on phones, grid from md up */}
         <div className="mt-8 overflow-x-auto pb-4 [scrollbar-width:none]">
-          <div className="section flex snap-x snap-mandatory gap-4 md:grid md:grid-cols-5 md:gap-4">
+          <div className="section flex snap-x snap-mandatory gap-4 md:grid md:grid-cols-3 md:gap-6 lg:max-w-4xl">
             {REELS.map((r) => (
               <figure key={r.id} className="w-44 shrink-0 snap-start md:w-auto">
                 <video
