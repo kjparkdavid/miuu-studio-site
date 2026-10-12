@@ -27,10 +27,9 @@ function Cover({ src, label }: { src: string; label?: string }) {
 
 export function SeriesCard({ series, locale }: { series: Series; locale: Locale }) {
   const t = UI[locale];
-  const total = series.episodes.length + (series.instagram?.length ?? 0);
   return (
     <Link href={localePath(locale, seriesPath(series))} className={cardClass}>
-      <Cover src={comicCover(series.episodes[0], locale)} label={t.episodes(total)} />
+      <Cover src={comicCover(series.episodes[0], locale)} label={t.episodes(series.episodes.length)} />
       <div className="p-4">
         <h3 className="font-display text-lg font-extrabold leading-snug">{series.title[locale]}</h3>
         <p className="mt-1 text-sm leading-relaxed text-ink/65">{series.blurb[locale]}</p>

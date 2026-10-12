@@ -71,7 +71,7 @@ export default function ComicReader({ locale, seriesId, slug }: { locale: Locale
           ) : (
             <Link href={localePath(locale, seriesPath(series))} className="rounded-2xl bg-lilac p-4 text-right hover:bg-violet hover:text-white">
               <span className="text-xs opacity-70">{t.readerEnd}</span>
-              <span className="mt-1 block text-sm font-bold">{series.instagram ? t.moreOnInstagram : series.title[locale]} →</span>
+              <span className="mt-1 block text-sm font-bold">{series.title[locale]} →</span>
             </Link>
           )}
         </nav>

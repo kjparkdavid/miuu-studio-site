@@ -7,7 +7,6 @@ import { Locale, UI, localePath } from "@/lib/i18n";
 export default function SeriesPage({ locale, id }: { locale: Locale; id: string }) {
   const t = UI[locale];
   const s = SERIES.find((x) => x.id === id)!;
-  const onSite = s.episodes.length;
 
   return (
     <Layout
@@ -29,28 +28,6 @@ export default function SeriesPage({ locale, id }: { locale: Locale; id: string 
             <EpisodeCard key={ep.slug} series={s} ep={ep} n={i + 1} locale={locale} />
           ))}
         </div>
-
-        {s.instagram && (
-          <div className="mt-8 rounded-2xl bg-white p-5 ring-1 ring-ink/5">
-            <h2 className="text-sm font-bold">{t.moreOnInstagram}</h2>
-            <p className="mt-1 text-sm text-ink/60">{t.moreOnInstagramBody}</p>
-            <ol className="mt-4 flex flex-wrap gap-2">
-              {s.instagram.map((e, i) => (
-                <li key={e.url}>
-                  <a
-                    href={e.url}
-                    target="_blank"
-                    rel="noopener"
-                    className="inline-flex items-center gap-1.5 rounded-full bg-lilac px-3 py-1.5 text-sm font-semibold hover:bg-violet hover:text-white"
-                  >
-                    <span className="text-xs opacity-60">{t.episodeN(onSite + i + 1)}</span>
-                    {e.title[locale]} ↗
-                  </a>
-                </li>
-              ))}
-            </ol>
-          </div>
-        )}
       </section>
     </Layout>
   );

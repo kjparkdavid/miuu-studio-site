@@ -7,8 +7,6 @@ export const LINKS = {
   email: "support@miuustudio.com",
 };
 
-const ig = (id: string) => `https://www.instagram.com/p/${id}/`;
-
 // Follower count from @miuustudio (2026-09-25); downloads from the Play Console (2026-10-09)
 export const STATS = { followers: "230K+", downloads: "1.8M+" };
 
@@ -73,14 +71,11 @@ export type Episode = {
   pages: Partial<Record<Locale, number>>;
 };
 
-export type InstagramEpisode = { title: L; url: string };
-
 export type Series = {
   id: string;
   title: L;
   blurb: L;
   episodes: Episode[];
-  instagram?: InstagramEpisode[];
 };
 
 export const SERIES: Series[] = [
@@ -95,15 +90,13 @@ export const SERIES: Series[] = [
       { slug: "hi-im-miuu", title: { en: "Hi, I'm Miuu", ko: "안녕, 난 미유야" }, pages: { en: 10, ko: 10 } },
       { slug: "new-family-1", title: { en: "New Family! Part 1", ko: "새 가족 1편" }, pages: { en: 10, ko: 10 } },
       { slug: "new-family-2", title: { en: "New Family! Part 2", ko: "새 가족 2편" }, pages: { en: 10 } },
-    ],
-    instagram: [
-      { title: { en: "Meeting the Alley Cats", ko: "골목 고양이들" }, url: ig("C-MaD1Issm6") },
-      { title: { en: "Cat Detective Agency", ko: "고양이 탐정 사무소" }, url: ig("C-oFYCSPXAo") },
-      { title: { en: "First Shift", ko: "첫 출근" }, url: ig("C_CDzLQvaUh") },
-      { title: { en: "To the Lab", ko: "연구소로" }, url: ig("C_q0hR-PB4Q") },
-      { title: { en: "Nunu", ko: "누누" }, url: ig("C_80_0xhZ1R") },
-      { title: { en: "The Black Cat", ko: "검은 고양이" }, url: ig("DAO_wssPMs7") },
-      { title: { en: "Secret Mission", ko: "비밀 임무" }, url: ig("DAg5ev0Ppmd") },
+      { slug: "alley-cats", title: { en: "Meeting the Alley Cats", ko: "골목 고양이들" }, pages: { en: 10 } },
+      { slug: "detective", title: { en: "Cat Detective Agency", ko: "고양이 탐정 사무소" }, pages: { en: 10 } },
+      { slug: "first-shift", title: { en: "First Shift", ko: "첫 출근" }, pages: { en: 10 } },
+      { slug: "lab", title: { en: "To the Lab", ko: "연구소로" }, pages: { en: 10 } },
+      { slug: "nunu", title: { en: "Nunu", ko: "누누" }, pages: { en: 10 } },
+      { slug: "black-cat", title: { en: "The Black Cat", ko: "검은 고양이" }, pages: { en: 10 } },
+      { slug: "secret-mission", title: { en: "Secret Mission", ko: "비밀 임무" }, pages: { en: 10 } },
     ],
   },
   {
@@ -117,11 +110,9 @@ export const SERIES: Series[] = [
       { slug: "times-square", title: { en: "Times Square", ko: "타임스스퀘어" }, pages: { en: 12 } },
       { slug: "hungry", title: { en: "Hungry", ko: "배고파" }, pages: { en: 8 } },
       { slug: "subway", title: { en: "NYC Subway", ko: "뉴욕 지하철" }, pages: { en: 10 } },
-    ],
-    instagram: [
-      { title: { en: "Hospital", ko: "병원" }, url: ig("DOFZQzxDQco") },
-      { title: { en: "Prison, Part 1", ko: "감옥 1편" }, url: ig("DOfOoGDDZfC") },
-      { title: { en: "Prison Playbook", ko: "감옥 2편" }, url: ig("DOzeeJCCfN4") },
+      { slug: "hospital", title: { en: "NYC Hospital", ko: "뉴욕 병원" }, pages: { en: 10 } },
+      { slug: "prison-1", title: { en: "Locked Up", ko: "갇혔다" }, pages: { en: 10 } },
+      { slug: "prison-2", title: { en: "Prison Playbook", ko: "슬기로운 감옥 생활" }, pages: { en: 14 } },
     ],
   },
   {
@@ -134,6 +125,7 @@ export const SERIES: Series[] = [
     episodes: [
       { slug: "i-did-it", title: { en: "I Did It!", ko: "해냈다!" }, pages: { en: 9 } },
       { slug: "zero-reviews", title: { en: "Zero Reviews", ko: "리뷰 0개" }, pages: { en: 8 } },
+      { slug: "donut-3", title: { en: "I Needed a Hero", ko: "히어로가 필요해" }, pages: { en: 9 } },
     ],
   },
   {
@@ -144,16 +136,14 @@ export const SERIES: Series[] = [
       ko: "미유, 미요미, 키키의 짧은 일상 만화.",
     },
     episodes: [
+      { slug: "investment", title: { en: "Miyomi's Investment", ko: "미요미의 투자" }, pages: { en: 14 } },
+      { slug: "new-outfit", title: { en: "Miuu's New Outfit", ko: "미유의 새 옷" }, pages: { en: 14 } },
+      { slug: "abandoned-cat", title: { en: "Abandoned Cat", ko: "버려진 고양이" }, pages: { en: 10 } },
+      { slug: "snowman", title: { en: "Memories with a Snowman", ko: "눈사람과의 추억" }, pages: { en: 13 } },
+      { slug: "pigeons", title: { en: "Pigeons", ko: "비둘기" }, pages: { en: 13 } },
+      { slug: "anger-academy", title: { en: "Anger Academy", ko: "분노 아카데미" }, pages: { en: 13 } },
       { slug: "spa", title: { en: "Spa Day", ko: "스파 가는 날" }, pages: { en: 9 } },
       { slug: "movie-theater", title: { en: "Movie Theater", ko: "영화관" }, pages: { en: 1 } },
-    ],
-    instagram: [
-      { title: { en: "Miyomi's Investment", ko: "미요미의 투자" }, url: ig("DCaTkJ8vAZg") },
-      { title: { en: "Miuu's New Outfit", ko: "미유의 새 옷" }, url: ig("DCfLGPLvKwh") },
-      { title: { en: "Abandoned Cat", ko: "버려진 고양이" }, url: ig("DDF1zaZP3WY") },
-      { title: { en: "Winter Story: Snowman", ko: "겨울 이야기: 눈사람" }, url: ig("DDyKSvfMeFh") },
-      { title: { en: "Pigeons", ko: "비둘기" }, url: ig("DEotprIRNVw") },
-      { title: { en: "Anger Academy", ko: "분노 아카데미" }, url: ig("DE8arzyvfU2") },
     ],
   },
 ];
