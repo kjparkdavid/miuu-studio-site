@@ -59,14 +59,14 @@ export const UI = {
   ko: {
     metaTitle: "Miuu Studio · 외계 고양이 미유의 집",
     metaDescription:
-      "캣띠 행성에서 온 외계 고양이 미유의 만화, 짧은 애니메이션, 그리고 아늑한 앱을 만드는 Miuu Studio예요.",
+      "캐띠 행성에서 온 외계 고양이 미유의 만화, 짧은 애니메이션, 그리고 아늑한 앱을 만드는 Miuu Studio예요.",
     navCharacters: "캐릭터",
     navComics: "만화",
     navReels: "릴스",
     navApps: "앱",
     switchLang: "English",
     heroEyebrow: "Miuu Studio",
-    heroTitle: "안녕! 난 캣띠 행성에서 온 외계 고양이 미유야.",
+    heroTitle: "안녕! 난 캐띠 행성에서 온 외계 고양이 미유야.",
     heroBody: "지금은 뉴욕에 살아. 내 만화랑 짧은 영상, 친구들이랑 만든 앱이 다 여기 있어.",
     heroCtaComics: "만화 보러 가기",
     heroCtaInstagram: "인스타그램 팔로우",

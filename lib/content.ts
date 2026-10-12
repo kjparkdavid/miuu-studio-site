@@ -22,7 +22,7 @@ export const CHARACTERS: Character[] = [
     name: { en: "Miuu", ko: "미유" },
     bio: {
       en: "An alien kitty from Catty Planet, now in New York. Always positive, a little clueless, never without his yellow bag.",
-      ko: "캣띠 행성에서 온 외계 고양이. 지금은 뉴욕에 살아요. 늘 긍정적이고 살짝 엉뚱해요. 노란 가방은 꼭 챙겨요.",
+      ko: "캐띠 행성에서 온 외계 고양이. 지금은 뉴욕에 살아요. 늘 긍정적이고 살짝 엉뚱해요. 노란 가방은 꼭 챙겨요.",
     },
     bg: "bg-lilac",
   },
@@ -40,7 +40,7 @@ export const CHARACTERS: Character[] = [
     name: { en: "Kao", ko: "카오" },
     bio: {
       en: "A biologist from Catty Planet. He's the one who helped Miuu escape to Earth.",
-      ko: "캣띠 행성의 생물학자. 미유가 지구로 탈출하게 도와준 고양이예요.",
+      ko: "캐띠 행성의 생물학자. 미유가 지구로 탈출하게 도와준 고양이예요.",
     },
     bg: "bg-sky",
   },
@@ -89,7 +89,7 @@ export const SERIES: Series[] = [
     title: { en: "Miuu's Story", ko: "미유 이야기" },
     blurb: {
       en: "How a kitty from Catty Planet ended up on Earth, and found a family.",
-      ko: "캣띠 행성의 고양이가 지구에 와서 가족을 찾기까지.",
+      ko: "캐띠 행성의 고양이가 지구에 와서 가족을 찾기까지.",
     },
     episodes: [
       { slug: "hi-im-miuu", title: { en: "Hi, I'm Miuu", ko: "안녕, 난 미유야" }, pages: { en: 10, ko: 10 } },
