@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
 import { Locale, UI } from "@/lib/i18n";
 
-// Tiny Us waitlist: posts the email to a Google Form ("Tiny Us waitlist", owned by kjparkdavid@gmail.com).
+// Tiny Us waitlist: posts the email to a Google Form ("Tiny Us waitlist", owned by the jinizzuru@gmail.com Google account).
 // Responses land in the form's Responses tab / linked sheet. Google doesn't send CORS headers,
 // so the request is fire-and-forget (no-cors) and we show the thank-you right away.
 const FORM_URL =
