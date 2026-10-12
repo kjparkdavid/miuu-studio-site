@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Layout from "@/components/layout";
 import { SeriesCard } from "@/components/comicCard";
+import Waitlist from "@/components/waitlist";
 import { APPS, CHARACTERS, LINKS, REELS, SERIES, STATS } from "@/lib/content";
 import { Locale, UI, localePath } from "@/lib/i18n";
 import { Cloud, Heart, Planet, Sparkle, Star, Wave } from "@/components/doodles";
@@ -33,7 +34,6 @@ export default function HomePage({ locale }: { locale: Locale }) {
             <dl className="mt-10 flex flex-wrap gap-x-10 gap-y-4">
               <Stat value={STATS.instagram} label={t.statInstagram} />
               <Stat value={STATS.tiktok} label={t.statTiktok} />
-              <Stat value={STATS.youtube} label={t.statYoutube} />
               <Stat value={STATS.downloads} label={t.statDownloads} />
             </dl>
           </div>
@@ -145,6 +145,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
                 </div>
               </div>
               <p className="mt-4 max-w-md leading-relaxed text-ink/75">{app.tagline[locale]}</p>
+              {app.id === "tiny-us" && <Waitlist locale={locale} />}
               {app.links && (
                 <div className="mt-5 flex flex-wrap gap-2">
                   {app.links.map((l) => (
