@@ -17,7 +17,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
         <div className="section relative grid items-center gap-6 pb-20 pt-10 md:grid-cols-[1.1fr_1fr] md:gap-10 md:pb-28 md:pt-24">
           <div>
             <p className="eyebrow">{t.heroEyebrow}</p>
-            <h1 className="mt-4 font-display text-4xl font-extrabold leading-[1.1] sm:text-5xl lg:text-6xl">{t.heroTitle}</h1>
+            <h1 className="mt-3 font-display text-[28px] font-extrabold leading-[1.2] sm:mt-4 sm:text-5xl sm:leading-[1.1] lg:text-6xl">{t.heroTitle}</h1>
             <p className="mt-5 max-w-lg text-lg leading-relaxed text-ink/75">{t.heroBody}</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href={localePath(locale, "/comics/")} className="pill bg-violet text-white shadow-card hover:bg-violet-deep">
