@@ -38,7 +38,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
             </dl>
           </div>
           {/* on mobile Miuu sits small above the headline instead of after all the text */}
-          <div className="relative order-first mx-auto w-full max-w-[160px] md:order-none md:max-w-sm">
+          <div className="relative order-first mx-auto w-full max-w-[112px] md:order-none md:max-w-sm">
             {/* soft round backdrop behind Miuu */}
             <div className="absolute -inset-[8%] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,1)_0%,rgba(255,255,255,0.75)_35%,rgba(201,182,255,0.35)_55%,transparent_72%)]" aria-hidden />
             <img src="/brand/miuu-wave.webp" alt="Miuu waving" width={342} height={342} className="relative w-full animate-float-slow" />
@@ -239,9 +239,9 @@ function HeroDoodles() {
   const items: [typeof Star, string, string][] = [
     [Sparkle, "start-[6%] top-[12%] hidden h-7 w-7 animate-twinkle md:block", "0s"],
     [Star, "start-[44%] top-[9%] hidden h-6 w-6 animate-twinkle md:block", "0.4s"],
-    [Heart, "end-[20%] top-[22%] h-6 w-6 animate-float md:end-[7%] md:top-[46%] md:h-7 md:w-7", "0.2s"],
+    [Heart, "end-[27%] top-[20%] h-5 w-5 animate-float md:end-[7%] md:top-[46%] md:h-7 md:w-7", "0.2s"],
     [Sparkle, "end-[6%] top-[4%] h-5 w-5 animate-twinkle md:end-[30%] md:top-[14%]", "1.1s"],
-    [Planet, "start-[12%] top-[16%] h-10 w-10 animate-float-slow md:start-[3%] md:top-auto md:bottom-[22%] md:h-12 md:w-12", "0s"],
+    [Planet, "start-[20%] top-[12%] h-9 w-9 animate-float-slow md:start-[3%] md:top-auto md:bottom-[22%] md:h-12 md:w-12", "0s"],
     [Star, "end-[4%] bottom-[26%] hidden h-5 w-5 animate-twinkle md:block", "0.7s"],
     [Sparkle, "start-[40%] bottom-[20%] hidden h-4 w-4 animate-twinkle md:block", "1.6s"],
   ];
