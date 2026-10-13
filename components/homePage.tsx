@@ -14,7 +14,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
       {/* Hero */}
       <section className="relative overflow-hidden bg-gradient-to-b from-lilac to-canvas">
         <HeroDoodles />
-        <div className="section relative grid items-center gap-10 pb-20 pt-14 md:grid-cols-[1.1fr_1fr] md:pb-28 md:pt-24">
+        <div className="section relative grid items-center gap-6 pb-20 pt-10 md:grid-cols-[1.1fr_1fr] md:gap-10 md:pb-28 md:pt-24">
           <div>
             <p className="eyebrow">{t.heroEyebrow}</p>
             <h1 className="mt-4 font-display text-4xl font-extrabold leading-[1.1] sm:text-5xl lg:text-6xl">{t.heroTitle}</h1>
@@ -37,7 +37,8 @@ export default function HomePage({ locale }: { locale: Locale }) {
               <Stat value={STATS.downloads} label={t.statDownloads} />
             </dl>
           </div>
-          <div className="relative mx-auto w-full max-w-sm">
+          {/* on mobile Miuu sits small above the headline instead of after all the text */}
+          <div className="relative order-first mx-auto w-full max-w-[160px] md:order-none md:max-w-sm">
             {/* soft round backdrop behind Miuu */}
             <div className="absolute -inset-[8%] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,1)_0%,rgba(255,255,255,0.75)_35%,rgba(201,182,255,0.35)_55%,transparent_72%)]" aria-hidden />
             <img src="/brand/miuu-wave.webp" alt="Miuu waving" width={342} height={342} className="relative w-full animate-float-slow" />
@@ -234,13 +235,14 @@ function Stat({ value, label }: { value: string; label: string }) {
 
 // little hand-drawn doodles (sparkles, stars, a heart, a planet, clouds) around the hero
 function HeroDoodles() {
+  // mobile: doodles gather around Miuu at the top so they never sit on the text
   const items: [typeof Star, string, string][] = [
     [Sparkle, "start-[6%] top-[12%] hidden h-7 w-7 animate-twinkle md:block", "0s"],
     [Star, "start-[44%] top-[9%] hidden h-6 w-6 animate-twinkle md:block", "0.4s"],
-    [Heart, "end-[7%] top-[46%] h-7 w-7 animate-float", "0.2s"],
+    [Heart, "end-[20%] top-[22%] h-6 w-6 animate-float md:end-[7%] md:top-[46%] md:h-7 md:w-7", "0.2s"],
     [Sparkle, "end-[6%] top-[4%] h-5 w-5 animate-twinkle md:end-[30%] md:top-[14%]", "1.1s"],
-    [Planet, "start-[3%] bottom-[22%] h-12 w-12 animate-float-slow", "0s"],
-    [Star, "end-[4%] bottom-[26%] h-5 w-5 animate-twinkle", "0.7s"],
+    [Planet, "start-[12%] top-[16%] h-10 w-10 animate-float-slow md:start-[3%] md:top-auto md:bottom-[22%] md:h-12 md:w-12", "0s"],
+    [Star, "end-[4%] bottom-[26%] hidden h-5 w-5 animate-twinkle md:block", "0.7s"],
     [Sparkle, "start-[40%] bottom-[20%] hidden h-4 w-4 animate-twinkle md:block", "1.6s"],
   ];
   return (
