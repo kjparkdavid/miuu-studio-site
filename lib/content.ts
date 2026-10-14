@@ -252,7 +252,7 @@ export const APPS: App[] = [
       en: "A cozy little home and diary for two.",
       ko: "둘이 함께 꾸미고 쓰는 아늑한 작은 집과 다이어리.",
     },
-    icon: "/apps/tiny-us-icon.webp",
+    icon: "/apps/tiny-us-icon.webp?v=2",
     shots: [],
     status: "soon",
     bg: "bg-blush",
