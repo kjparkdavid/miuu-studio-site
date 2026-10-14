@@ -71,7 +71,7 @@ export default function TinyLanding({ locale }: { locale: Locale }) {
           <p className="mt-5 max-w-md text-lg leading-relaxed text-tu-caption">{t.heroBody}</p>
           <GetTinyUs locale={locale} id="waitlist-hero" />
         </div>
-        <div className="order-1 mx-auto w-full max-w-[264px] sm:max-w-[320px] md:order-2 md:max-w-[432px]">
+        <div className="order-1 mx-auto w-full max-w-[240px] sm:max-w-[300px] md:order-2 md:max-w-[432px]">
           <div className="overflow-hidden rounded-[32px] bg-tu-night shadow-[0_24px_60px_-28px_rgba(36,32,90,0.7)]">
             <PixelHome bg="/tinyus/art/home-night.png" pets={["miuu", "miyomi"]} alt={t.heroAlt} />
           </div>
