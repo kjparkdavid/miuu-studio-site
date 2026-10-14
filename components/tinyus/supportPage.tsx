@@ -40,6 +40,8 @@ export default function SupportPage({ locale }: { locale: Locale }) {
           <a href={tinyPath(locale, "privacy")} className="font-semibold text-tu-accent hover:underline">{t.footerPrivacy}</a>
           {" · "}
           <a href={tinyPath(locale, "terms")} className="font-semibold text-tu-accent hover:underline">{t.footerTerms}</a>
+          {" · "}
+          <a href={tinyPath(locale, "delete-account")} className="font-semibold text-tu-accent hover:underline">{p.deleteTitle}</a>
         </p>
       </div>
     </TinyLayout>

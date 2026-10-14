@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { Locale } from "@/lib/i18n";
 import { Block, LEGAL_DRAFT, LEGAL_UPDATED, LegalDoc } from "@/lib/tinyusLegal";
 import TinyLayout from "./layout";
@@ -6,11 +7,21 @@ import TinyLayout from "./layout";
 // (a Korean version comes after the legal review). Review flags ("!dev" / "!law") show while LEGAL_DRAFT is true.
 const FLAG = { dev: "Confirm with dev", law: "Lawyer review" } as const;
 
+// emails and the few web addresses in the text become links
+const LINK = /([\w.+-]+@[\w-]+\.[\w.]+|miuustudio\.com\/tinyus\/[a-z-]+|reportaproblem\.apple\.com|priv\.gc\.ca)/g;
+function linkify(text: string): ReactNode[] {
+  return text.split(LINK).map((part, i) => {
+    if (i % 2 === 0) return part;
+    const href = part.includes("@") ? `mailto:${part}` : part.startsWith("miuustudio.com") ? part.replace("miuustudio.com", "") + "/" : `https://${part}`;
+    return <a key={i} href={href} className="font-semibold text-tu-accent underline-offset-4 hover:underline">{part}</a>;
+  });
+}
+
 function render(b: Block, i: number) {
   if (typeof b !== "string") {
     return (
       <ul key={i} className="mt-3 list-disc space-y-2 ps-5 marker:text-tu-accent">
-        {b.map((li) => <li key={li}>{li}</li>)}
+        {b.map((li) => <li key={li}>{linkify(li)}</li>)}
       </ul>
     );
   }
@@ -24,7 +35,7 @@ function render(b: Block, i: number) {
       </p>
     );
   }
-  return <p key={i} className="mt-3">{b}</p>;
+  return <p key={i} className="mt-3">{linkify(b)}</p>;
 }
 
 export default function LegalPage({ locale, doc, page }: { locale: Locale; doc: LegalDoc; page: "privacy" | "terms" }) {

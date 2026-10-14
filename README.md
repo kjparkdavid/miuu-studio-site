@@ -21,8 +21,9 @@ in `tailwind.config.js` + `.tu` CSS variables in `styles/globals.css`, light + d
 - `lib/tinyusLegal.ts` — Privacy Policy + Terms of Use. **DRAFT**: `LEGAL_DRAFT` shows the banner, the "Confirm with dev" /
   "Lawyer review" flags and `noindex`. Korean URLs show the English text with a note until a reviewed Korean version exists.
 - `components/tinyus/` — `layout`, `landing`, `getTinyUs` (the CTA for both phases + store badges), `pixelHome` (the animated
-  pixel home + `PetSprite`), `legalPage`, `supportPage`, `invitePage`; `sprites.generated.ts` is generated, don't edit
-- `pages/tinyus/*` + `pages/ko/tinyus/*` — `/`, `privacy`, `terms`, `support`, `invite`
+  pixel home: couple moments, loveseat nap, twinkling stars + `PetSprite`), `motion` (scroll reveals + the 3 step demos),
+  `legalPage`, `supportPage`, `invitePage`, `deletePage` (Google Play's account-deletion URL); `sprites.generated.ts` is generated, don't edit
+- `pages/tinyus/*` + `pages/ko/tinyus/*` — `/`, `privacy`, `terms`, `support`, `invite`, `delete-account`
 - `pages/404.tsx` — forwards invite links `/tinyus/invite/XXXX-XXXX/` to `/tinyus/invite/?code=…`
 - `public/tinyus/art|brand/` — pixel art + favicon/OG, made by `design-review/tinyus-pixel/website/make_site_art.py` in
   secret-note-main (`python3 make_site_art.py ~/Development/miuu-studio-site`); rerun it instead of editing the PNGs

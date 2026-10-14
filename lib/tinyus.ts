@@ -20,6 +20,8 @@ export const TINYUS = {
   // tinyus@miuustudio.com, created by the user 10-14: the one place to change the support address on every Tiny Us page.
   supportEmail: "tinyus@miuustudio.com",
   company: "Miuu Studio",
+  // The publisher named in the Privacy Policy + Terms (user, 10-14). One place to change it.
+  legal: { name: "Miuu Studio", address: "2112-7165 Yonge St, Markham, ON L3T 0C9, Canada" },
   // Invite codes are the app's 8-character XXXX-XXXX (dev #378). Universal link: /tinyus/invite/<code>.
   inviteCode: /^[A-Z0-9]{4}-?[A-Z0-9]{4}$/,
 };
@@ -69,10 +71,12 @@ export type TinyCopy = {
   qCardEyebrow: string;
   qCardQuestion: string;
   qCardPlaceholder: string;
+  qCardHidden: string;
   revealYou: string;
   revealThem: string;
   revealA: string;
   revealB: string;
+  revealBoth: string;
   growLabels: readonly [string, string, string, string, string];
   growAlts: readonly [string, string, string, string, string];
   littleEyebrow: string;
@@ -138,10 +142,12 @@ const en: TinyCopy = {
   qCardEyebrow: "Today’s question",
   qCardQuestion: "What’s the first thing you noticed about me?",
   qCardPlaceholder: "Write your answer…",
+  qCardHidden: "Hidden until Sam answers too",
   revealYou: "You",
   revealThem: "Sam",
   revealA: "Your laugh. I heard it before I saw you.",
   revealB: "Honestly? Your terrible taste in snacks 😄",
+  revealBoth: "You both answered!",
   growLabels: ["Day 1", "Day 3", "Day 14", "or a new city", "And then…?"],
   growAlts: [
     "A tiny hut on a hill",
@@ -221,10 +227,12 @@ const ko: TinyCopy = {
   qCardEyebrow: "오늘의 질문",
   qCardQuestion: "나를 보고 제일 먼저 눈에 띈 게 뭐였어?",
   qCardPlaceholder: "답을 적어 보세요…",
+  qCardHidden: "Sam도 답하면 열려요",
   revealYou: "나",
   revealThem: "Sam",
   revealA: "웃음소리. 얼굴 보기 전에 먼저 들었어.",
   revealB: "솔직히? 과자 고르는 취향이 너무 이상했어 😄",
+  revealBoth: "둘 다 답했어요!",
   growLabels: ["1일째", "3일째", "14일째", "또는 새 도시로", "그다음은…?"],
   growAlts: ["언덕 위 작은 오두막", "분홍 지붕 오두막", "2층을 올린 집", "뉴욕·파리·도쿄의 집", "물음표가 있는 비밀 실루엣"],
   littleEyebrow: "둘을 위해",
@@ -281,11 +289,34 @@ export const TINY_PAGES = {
     supportFaqTitle: "Quick answers",
     supportFaq: [
       ["How do we link up?", "One of you opens Settings → Partner link and shares the code (or the invite link). The other enters it in their app. Codes work for 7 days."],
-      ["We both paid for Plus by mistake.", "One Plus covers both of you. The person who doesn’t need theirs can cancel it in the App Store or Google Play subscriptions; it stays on until the end of the period you paid for. For a refund, ask Apple or Google; they handle refunds for app purchases."],
+      ["We both paid for Plus by mistake.", "One Plus covers both of you. The person who doesn’t need theirs can cancel it in the App Store or Google Play subscriptions; it stays on until the end of the period you paid for. For a refund: Apple refunds App Store purchases (reportaproblem.apple.com); for Google Play, ask Google or write to us and we’ll look at it."],
       ["How do I restore Plus on a new phone?", "Sign in with the same account, then tap Settings → Plus → Restore purchases."],
-      ["How do I unlink?", "Settings → Partner link → Unlink. You can re-link with a new code anytime."],
-      ["How do I delete my account?", "Settings → Account → Delete account. This removes your account and your data. If you have a subscription, cancel it in the App Store or Google Play first; deleting the account doesn’t cancel it."],
+      ["How do I unlink?", "Settings → Partner link → Unlink. Nothing is deleted: re-link within 30 days and everything comes back just as it was."],
+      ["How do I delete my account?", "Settings → Account → Delete account. You have 7 days to change your mind. A subscription isn’t cancelled by deleting, so cancel it in the App Store or Google Play first. No app? See the delete-account page below."],
     ] as QA[],
+    deleteTitle: "Delete your Tiny Us account",
+    deleteIntro: "You can delete your account and the data you created at any time. Here’s how, and what happens.",
+    deleteAppTitle: "In the app",
+    deleteAppSteps: ["Open Tiny Us", "Settings → Account", "Delete account, then confirm"],
+    deleteMailTitle: "Don’t have the app?",
+    deleteMailBody: "Email us from the email address on your Tiny Us account (your Apple or Google sign-in email) with the subject below. We’ll confirm before we delete anything.",
+    deleteMailSubject: "Delete my Tiny Us account",
+    deleteMailCta: "Write the email",
+    deleteWhenTitle: "What happens and when",
+    deleteWhen: [
+      "Right away: you’re signed out everywhere and unlinked from your person.",
+      "For 7 days: changed your mind? Sign back in and it’s cancelled.",
+      "After 7 days: we delete your account and everything you created: answers, replies, diary and journal entries, notes, lists, moods, places and stamps, photos and voice notes.",
+      "Within 30 days of your request: backup copies are gone too.",
+    ],
+    deletePartnerTitle: "Your person",
+    deletePartnerBody: "Your person keeps their own answers, photos and places, and the home you built. Where your answers were, they’ll see “Not available”. If they delete their account too, their copy goes as well.",
+    deleteKeptTitle: "What’s kept",
+    deleteKept: [
+      "Purchase records that Apple and Google keep, and the tax records the law requires us to keep.",
+      "Anonymous, aggregated statistics that can’t identify you.",
+    ],
+    deleteSubNote: "Deleting your account doesn’t cancel a subscription. Cancel it first in your App Store account settings or Google Play → Subscriptions.",
     inviteTitle: "Get Tiny Us to move in together",
     inviteBody: "Your person saved you a spot in their tiny home. Get the app, then enter this code to link up.",
     inviteCode: "Your invite code",
@@ -304,11 +335,31 @@ export const TINY_PAGES = {
     supportFaqTitle: "자주 묻는 질문",
     supportFaq: [
       ["어떻게 연결하나요?", "한 명이 설정 → 파트너 연결에서 코드(또는 초대 링크)를 공유하고, 다른 한 명이 앱에 입력하면 돼요. 코드는 7일 동안 쓸 수 있어요."],
-      ["실수로 둘 다 Plus를 결제했어요.", "Plus 하나로 둘 다 쓸 수 있어요. 필요 없는 쪽은 App Store나 Google Play 구독에서 해지하면 되고, 결제한 기간이 끝날 때까지는 그대로 쓸 수 있어요. 환불은 Apple이나 Google에 요청해 주세요. 앱 결제 환불은 스토어에서 처리해요."],
+      ["실수로 둘 다 Plus를 결제했어요.", "Plus 하나로 둘 다 쓸 수 있어요. 필요 없는 쪽은 App Store나 Google Play 구독에서 해지하면 되고, 결제한 기간이 끝날 때까지는 그대로 쓸 수 있어요. App Store 결제 환불은 Apple(reportaproblem.apple.com)에서 해요. Google Play는 Google에 요청하거나 저희에게 메일 주시면 확인해 드릴게요."],
       ["새 폰에서 Plus를 복원하려면요?", "같은 계정으로 로그인한 뒤 설정 → Plus → 구매 복원을 눌러 주세요."],
-      ["연결을 끊으려면요?", "설정 → 파트너 연결 → 연결 끊기. 언제든 새 코드로 다시 연결할 수 있어요."],
-      ["계정을 삭제하려면요?", "설정 → 계정 → 계정 삭제. 계정과 데이터가 삭제돼요. 구독 중이라면 먼저 App Store나 Google Play에서 해지해 주세요. 계정을 지워도 구독은 자동으로 해지되지 않아요."],
+      ["연결을 끊으려면요?", "설정 → 파트너 연결 → 연결 끊기. 지워지는 건 없어요. 30일 안에 다시 연결하면 전부 그대로 돌아와요."],
+      ["계정을 삭제하려면요?", "설정 → 계정 → 계정 삭제. 계정과 데이터가 삭제돼요. 구독 중이라면 먼저 App Store나 Google Play에서 해지해 주세요. 계정을 지워도 구독은 자동으로 해지되지 않아요. 7일 안에는 마음을 바꿀 수 있어요."],
     ] as QA[],
+    deleteTitle: "Tiny Us 계정 삭제",
+    deleteIntro: "언제든 계정과 내가 만든 데이터를 삭제할 수 있어요. 방법과 삭제되는 내용을 알려드릴게요.",
+    deleteAppTitle: "앱에서",
+    deleteAppSteps: ["Tiny Us 열기", "설정 → 계정", "계정 삭제 누르고 확인"],
+    deleteMailTitle: "앱이 없다면",
+    deleteMailBody: "Tiny Us 계정 이메일(Apple 또는 Google 로그인 이메일)로 아래 제목을 넣어 메일 주세요. 삭제 전에 한 번 더 확인해 드려요.",
+    deleteMailSubject: "Delete my Tiny Us account",
+    deleteMailCta: "메일 쓰기",
+    deleteWhenTitle: "언제 무엇이 삭제되나요",
+    deleteWhen: [
+      "바로: 모든 기기에서 로그아웃되고, 상대와의 연결이 끊어져요.",
+      "7일 동안: 마음이 바뀌면 다시 로그인하세요. 삭제가 취소돼요.",
+      "7일 뒤: 계정과 내가 만든 모든 것(답, 답글, 다이어리, 쪽지, 리스트, 기분, 장소와 도장, 사진, 음성)이 삭제돼요.",
+      "요청 후 30일 안에: 백업 사본까지 모두 사라져요.",
+    ],
+    deletePartnerTitle: "상대는요",
+    deletePartnerBody: "상대가 쓴 답, 사진, 장소, 함께 지은 집은 상대에게 남아요. 내 답이 있던 자리에는 “볼 수 없음”이라고 보여요. 상대도 계정을 지우면 상대 쪽 사본도 사라져요.",
+    deleteKeptTitle: "남는 것",
+    deleteKept: ["Apple과 Google이 보관하는 결제 기록, 법에 따라 보관해야 하는 세금 기록", "나를 알아볼 수 없는 익명 통계"],
+    deleteSubNote: "계정을 지워도 구독은 해지되지 않아요. 먼저 App Store 계정 설정이나 Google Play → 구독에서 해지해 주세요.",
     inviteTitle: "Tiny Us 받고 같이 이사 와요",
     inviteBody: "내 사람이 작은 집에 내 자리를 남겨 뒀어요. 앱을 받고 이 코드를 입력하면 연결돼요.",
     inviteCode: "초대 코드",

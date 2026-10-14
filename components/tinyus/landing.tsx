@@ -4,6 +4,7 @@ import { TINYUS_LAUNCHED, tinyCopy } from "@/lib/tinyus";
 import TinyLayout from "./layout";
 import PixelHome, { PetSprite } from "./pixelHome";
 import GetTinyUs from "./getTinyUs";
+import { GrowStrip, QuestionDemo, Reveal, RevealDemo } from "./motion";
 
 // miuustudio.com/tinyus: the Tiny Us landing page. Pixel art only for the home, the pets and the animation;
 // everything else is the app's clean v2 Soft UI. Phase 1 (pre-launch) vs Phase 2 (store badges) = TINYUS_LAUNCHED.
@@ -63,49 +64,47 @@ export default function TinyLanding({ locale }: { locale: Locale }) {
       {/* Hero: the night home, alive */}
       <section className="mx-auto grid w-full max-w-5xl items-center gap-10 px-4 pt-8 sm:px-6 sm:pt-14 md:grid-cols-[1.1fr_1fr] md:gap-14">
         <div className="order-2 md:order-1">
-          <div className="flex items-center gap-2">
+          <div className="tu-rise flex items-center gap-2">
             <Eyebrow>{t.heroEyebrow}</Eyebrow>
             {!TINYUS_LAUNCHED && (
               <span className="rounded-full bg-tu-lilac px-2.5 py-0.5 text-xs font-bold text-tu-accent">{t.comingSoon}</span>
             )}
           </div>
-          <h1 className="mt-3 text-[40px] font-extrabold leading-[1.05] tracking-tight sm:text-6xl">{t.heroTitle}</h1>
-          <p className="mt-5 max-w-md text-lg leading-relaxed text-tu-caption">{t.heroBody}</p>
-          <GetTinyUs locale={locale} id="waitlist-hero" />
+          <h1 className="tu-rise mt-3 text-[40px] font-extrabold leading-[1.05] tracking-tight sm:text-6xl">{t.heroTitle}</h1>
+          <p className="tu-rise mt-5 max-w-md text-lg leading-relaxed text-tu-caption" style={{ ["--d" as string]: "120ms" }}>{t.heroBody}</p>
+          <div className="tu-rise" style={{ ["--d" as string]: "220ms" }}>
+            <GetTinyUs locale={locale} id="waitlist-hero" />
+          </div>
         </div>
-        <div className="order-1 mx-auto w-full max-w-[240px] sm:max-w-[300px] md:order-2 md:max-w-[432px]">
+        <div className="tu-rise order-1 mx-auto w-full max-w-[240px] sm:max-w-[300px] md:order-2 md:max-w-[432px]">
           <div className="overflow-hidden rounded-[32px] bg-tu-night shadow-[0_24px_60px_-28px_rgba(36,32,90,0.7)]">
-            <PixelHome bg="/tinyus/art/home-night.png" pets={["miuu", "miyomi"]} alt={t.heroAlt} />
+            <PixelHome bg="/tinyus/art/home-night.png" pets={["miuu", "miyomi"]} alt={t.heroAlt} stars />
           </div>
         </div>
       </section>
 
       {/* How it works */}
       <section id="how" className="mx-auto w-full max-w-5xl scroll-mt-20 px-4 pt-24 sm:px-6">
-        <Eyebrow>{t.howEyebrow}</Eyebrow>
-        <H2>{t.howTitle}</H2>
+        <Reveal>
+          <Eyebrow>{t.howEyebrow}</Eyebrow>
+          <H2>{t.howTitle}</H2>
+        </Reveal>
         <div className="mt-8 grid gap-4 md:grid-cols-2">
-          <article className={card}>
+          <Reveal as="article" className={card}>
             <Step n={1} title={t.steps[0].title} body={t.steps[0].body} />
-            <div className="mt-6 rounded-2xl border border-tu-line bg-tu-page p-4">
-              <p className="text-xs font-bold uppercase tracking-[0.14em] text-tu-accent">{t.qCardEyebrow}</p>
-              <p className="mt-2 text-lg font-bold leading-snug">{t.qCardQuestion}</p>
-              <div className="mt-4 rounded-xl border border-tu-line bg-tu-card px-3.5 py-3 text-sm text-tu-caption">{t.qCardPlaceholder}</div>
-            </div>
-          </article>
-          <article className={card}>
+            <QuestionDemo eyebrow={t.qCardEyebrow} question={t.qCardQuestion} placeholder={t.qCardPlaceholder} answer={t.revealA} hidden={t.qCardHidden} />
+          </Reveal>
+          <Reveal as="article" delay={120} className={card}>
             <Step n={2} title={t.steps[1].title} body={t.steps[1].body} />
-            <div className="mt-6 space-y-3 rounded-2xl border border-tu-line bg-tu-page p-4">
-              <Bubble art="miuu" who={t.revealYou} text={t.revealA} />
-              <Bubble art="miyomi" who={t.revealThem} text={t.revealB} mine={false} />
-            </div>
-          </article>
-          <article className={`${card} md:col-span-2`}>
+            <RevealDemo you={t.revealYou} them={t.revealThem} a={t.revealA} b={t.revealB} both={t.revealBoth} />
+          </Reveal>
+          <Reveal as="article" className={`${card} md:col-span-2`}>
             <Step n={3} title={t.steps[2].title} body={t.steps[2].body} />
-            {/* integer-scaled stills (1x on phones, a row on wider screens); scrolls inside the card on narrow phones */}
-            <ol className="-mx-5 mt-6 flex snap-x gap-3 overflow-x-auto px-5 pb-1 sm:-mx-7 sm:px-7 md:mx-0 md:justify-between md:overflow-visible md:px-0">
+            {/* integer-scaled stills (1x on phones, a row on wider screens); scrolls inside the card on narrow phones.
+                They grow in one by one when the strip scrolls into view. */}
+            <GrowStrip className="-mx-5 mt-6 flex snap-x gap-3 overflow-x-auto px-5 pb-1 sm:-mx-7 sm:px-7 md:mx-0 md:justify-between md:overflow-visible md:px-0">
               {GROW.map((g, i) => (
-                <li key={g} className="w-36 shrink-0 snap-start">
+                <li key={g} className="w-36 shrink-0 snap-start" style={{ ["--i" as string]: i }}>
                   {g === "city" ? (
                     <div className="tu-cycle overflow-hidden rounded-2xl" role="img" aria-label={t.growAlts[i]}>
                       {CITIES.map((c) => (
@@ -120,29 +119,31 @@ export default function TinyLanding({ locale }: { locale: Locale }) {
                   <p className={`mt-2 text-center text-sm font-bold ${i === 4 ? "text-tu-accent" : ""}`}>{t.growLabels[i]}</p>
                 </li>
               ))}
-            </ol>
-          </article>
+            </GrowStrip>
+          </Reveal>
         </div>
       </section>
 
       {/* Made for two */}
       <section className="mx-auto w-full max-w-5xl px-4 pt-24 sm:px-6">
-        <Eyebrow>{t.littleEyebrow}</Eyebrow>
-        <H2>{t.littleTitle}</H2>
+        <Reveal>
+          <Eyebrow>{t.littleEyebrow}</Eyebrow>
+          <H2>{t.littleTitle}</H2>
+        </Reveal>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {t.little.map((f, i) => (
-            <article key={f.title} className={card}>
+            <Reveal as="article" key={f.title} delay={i * 110} className={card}>
               <Icon name={(["hug", "mood", "note", "place"] as const)[i]} />
               <h3 className="mt-4 text-lg font-bold leading-snug">{f.title}</h3>
               <p className="mt-1.5 leading-relaxed text-tu-caption">{f.body}</p>
-            </article>
+            </Reveal>
           ))}
         </div>
       </section>
 
       {/* Puppy couple (never a mixed cat + puppy couple in marketing art) */}
       <section className="mx-auto w-full max-w-5xl px-4 pt-24 sm:px-6">
-        <div className={`${card} grid items-center gap-8 md:grid-cols-[1fr_1.1fr] md:gap-12`}>
+        <Reveal className={`${card} grid items-center gap-8 md:grid-cols-[1fr_1.1fr] md:gap-12`}>
           <div className="mx-auto w-full max-w-[320px] overflow-hidden rounded-[28px]">
             <PixelHome bg="/tinyus/art/home-day.png" pets={["cocoa", "milk"]} alt={t.puppyAlt} />
           </div>
@@ -158,12 +159,12 @@ export default function TinyLanding({ locale }: { locale: Locale }) {
               ))}
             </div>
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* Plus is shared */}
       <section className="mx-auto w-full max-w-5xl px-4 pt-24 sm:px-6">
-        <div className="rounded-3xl bg-tu-lilac p-6 sm:p-10">
+        <Reveal className="rounded-3xl bg-tu-lilac p-6 sm:p-10">
           <div className="flex items-center gap-1" aria-hidden>
             <PetSprite art="miuu" scale={2} />
             <PetSprite art="miyomi" scale={2} />
@@ -174,44 +175,48 @@ export default function TinyLanding({ locale }: { locale: Locale }) {
           <H2>{t.plusTitle}</H2>
           <p className="mt-4 max-w-2xl text-lg leading-relaxed text-tu-caption">{t.plusBody}</p>
           <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-            {t.plusPerks.map((p) => (
-              <li key={p} className="flex items-start gap-3 rounded-2xl bg-tu-card px-4 py-3.5 font-semibold leading-snug">
+            {t.plusPerks.map((p, i) => (
+              <Reveal as="li" key={p} delay={150 + i * 110} className="flex items-start gap-3 rounded-2xl bg-tu-card px-4 py-3.5 font-semibold leading-snug">
                 <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-tu-violet" aria-hidden />
                 {p}
-              </li>
+              </Reveal>
             ))}
           </ul>
           <p className="mt-5 text-sm font-semibold text-tu-caption">{t.plusFree}</p>
-        </div>
+        </Reveal>
       </section>
 
       {/* FAQ */}
       <section id="faq" className="mx-auto w-full max-w-3xl scroll-mt-20 px-4 pt-24 sm:px-6">
-        <Eyebrow>{t.faqEyebrow}</Eyebrow>
-        <H2>{t.faqTitle}</H2>
+        <Reveal>
+          <Eyebrow>{t.faqEyebrow}</Eyebrow>
+          <H2>{t.faqTitle}</H2>
+        </Reveal>
         <div className="mt-8 space-y-3">
-          {t.faq.map(([q, a]) => (
-            <details key={q} className="group rounded-2xl bg-tu-card px-5 py-4 [&_summary::-webkit-details-marker]:hidden">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-base font-bold">
-                {q}
-                <span className="text-xl leading-none text-tu-accent transition group-open:rotate-45" aria-hidden>+</span>
-              </summary>
-              <p className="mt-3 leading-relaxed text-tu-caption">{a}</p>
-            </details>
+          {t.faq.map(([q, a], i) => (
+            <Reveal key={q} delay={i * 70}>
+              <details className="group rounded-2xl bg-tu-card px-5 py-4 [&_summary::-webkit-details-marker]:hidden">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-base font-bold">
+                  {q}
+                  <span className="text-xl leading-none text-tu-accent transition group-open:rotate-45" aria-hidden>+</span>
+                </summary>
+                <p className="mt-3 leading-relaxed text-tu-caption">{a}</p>
+              </details>
+            </Reveal>
           ))}
         </div>
       </section>
 
       {/* Last call */}
       <section className="mx-auto w-full max-w-5xl px-4 pt-24 sm:px-6">
-        <div className="rounded-3xl bg-tu-night px-6 py-10 text-center text-white sm:px-10 sm:py-14">
+        <Reveal className="rounded-3xl bg-tu-night px-6 py-10 text-center text-white sm:px-10 sm:py-14">
           <img src="/tinyus/brand/icon-rounded.png" alt="" width={288} height={288} className="mx-auto h-16 w-16" />
           <h2 className="mt-5 text-[28px] font-extrabold leading-tight tracking-tight sm:text-4xl">{t.endTitle}</h2>
           <p className="mt-3 text-lg text-white/75">{TINYUS_LAUNCHED ? t.endBodyLive : t.endBody}</p>
           <div className="mx-auto max-w-md text-left">
             <GetTinyUs locale={locale} id="waitlist-end" onDark />
           </div>
-        </div>
+        </Reveal>
       </section>
     </TinyLayout>
   );
@@ -228,18 +233,3 @@ function Step({ n, title, body }: { n: number; title: string; body: string }) {
     </div>
   );
 }
-
-function Bubble({ art, who, text, mine = true }: { art: "miuu" | "miyomi"; who: string; text: string; mine?: boolean }) {
-  return (
-    <div className={`flex items-end gap-2 ${mine ? "" : "flex-row-reverse"}`}>
-      <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-tu-lilac">
-        <PetSprite art={art} scale={2} />
-      </span>
-      <div className={`max-w-[80%] rounded-2xl px-3.5 py-2.5 ${mine ? "rounded-bl-md bg-tu-card" : "rounded-br-md bg-tu-violet text-white"}`}>
-        <p className={`text-xs font-bold ${mine ? "text-tu-caption" : "text-white/75"}`}>{who}</p>
-        <p className="mt-0.5 text-[15px] leading-snug">{text}</p>
-      </div>
-    </div>
-  );
-}
-

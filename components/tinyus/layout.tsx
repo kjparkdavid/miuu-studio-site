@@ -11,7 +11,7 @@ const figtree = Figtree({ subsets: ["latin"], weight: ["500", "600", "700", "800
 
 type Props = {
   locale: Locale;
-  page?: "" | "privacy" | "terms" | "support" | "invite";
+  page?: "" | "privacy" | "terms" | "support" | "invite" | "delete-account";
   title: string;
   description: string;
   noindex?: boolean;

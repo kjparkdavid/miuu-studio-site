@@ -15,12 +15,12 @@ export type LegalSection = { h: string; blocks: readonly Block[] };
 export type LegalDoc = { title: string; intro: readonly Block[]; sections: readonly LegalSection[] };
 
 const email = TINYUS.supportEmail;
+const who = `${TINYUS.legal.name}, ${TINYUS.legal.address}`;
 
 export const PRIVACY: LegalDoc = {
   title: "Privacy Policy",
   intro: [
-    `This policy explains what Tiny Us collects, why, who it’s shared with, and the choices you have. Tiny Us is made by ${TINYUS.company} (“we”, “us”). Questions: ${email}.`,
-    "!law Add the legal entity name and postal address of the company that publishes the app (the App Store / Play seller name).",
+    `This policy explains what Tiny Us collects, why, who it’s shared with, and the choices you have. Tiny Us is made by ${who} (“we”, “us”), which is responsible for your personal information. Questions or privacy requests: ${email}.`,
   ],
   sections: [
     {
@@ -100,24 +100,27 @@ export const PRIVACY: LegalDoc = {
     {
       h: "How long we keep it",
       blocks: [
-        "We keep your information while your account is active. If you delete your account, we delete your personal information within 30 days, except what we must keep for legal, tax or fraud-prevention reasons. Copies in backups are removed on their normal cycle.",
-        "!dev Confirm the 30-day deletion window and the backup cycle.",
+        "We keep your information while your account is active. If you delete your account, you have 7 days to change your mind (just sign back in). After that we delete your personal information, and copies in backups are gone within 30 days of your request. We keep only what the law requires (for example, tax records for purchases).",
+        "!dev Confirm the build matches research/unlink-and-delete.md §7: 7-day cancel window, purge on day 7, backups gone by day 30.",
       ],
     },
     {
       h: "Unlinking and deleting",
       blocks: [
-        "If you unlink, you each keep your own copies of what you created. What you shared before unlinking may stay in your person’s diary.",
-        "You can delete your account in the app: Settings → Account → Delete account. This deletes your account and your data. It doesn’t cancel a subscription; cancel that in your App Store or Google Play settings.",
-        `You can also ask us to delete your data by emailing ${email} from the email address on your account.`,
-        "!dev Confirm the in-app delete path (Apple requires one) and what happens to shared content (answers, photos) in the partner’s diary after unlink and after deletion.",
+        "Unlinking deletes nothing. For 30 days you can re-link and everything comes back just as it was. After that, you can both still read what you made together, as a read-only archive. Your words leave your person’s archive only if you delete your account.",
+        "You can delete your account in the app: Settings → Account → Delete account. This deletes your account and everything you created. Your person keeps their own answers, photos and places; where your answers were, they’ll see “Not available”. Deleting doesn’t cancel a subscription; cancel that in your App Store or Google Play settings.",
+        `No app? Email ${email} from your account’s email address with the subject “Delete my Tiny Us account”. Step by step: miuustudio.com/tinyus/delete-account.`,
+        "!dev Confirm the in-app delete path (Apple requires one) and the archive behaviour match research/unlink-and-delete.md §3 and §7.",
       ],
     },
     {
       h: "Your rights",
       blocks: [
-        `Depending on where you live, you may have the right to access, correct, download or delete your personal information, to object to or limit some uses, and to withdraw consent. Email ${email} and we’ll help. We won’t treat you differently for using these rights.`,
-        "!law Review region-specific wording: California (CCPA/CPRA), other US states, EEA/UK (GDPR, including the right to complain to a supervisory authority), Korea (PIPA) if Tiny Us launches there.",
+        `Depending on where you live, you may have the right to access, correct, download or delete your personal information, to object to or limit some uses, and to withdraw consent. Email ${email} and we’ll help, usually within 30 days. We may need to confirm it’s you first. We won’t treat you differently for using these rights.`,
+        `Canada. We handle personal information under Canada’s Personal Information Protection and Electronic Documents Act (PIPEDA). You can ask to see the personal information we hold about you and ask us to correct it. If you’re not happy with our answer, you can complain to the Office of the Privacy Commissioner of Canada (priv.gc.ca).`,
+        "United States. If you live in California or another US state with a privacy law, you can ask what personal information we collect and why, ask us to delete or correct it, and opt out of the “sale” or “sharing” of personal information for targeted ads (for ads in Tiny Us, also turn off tracking as described in “Ads and tracking”). You can use an authorized agent.",
+        "EEA, UK and Switzerland. We rely on these legal bases: to provide the service you asked for (contract); to keep Tiny Us working, safe and improving (legitimate interests); and your consent for personalized ads and tracking, which you can withdraw anytime. You can also complain to your local data protection authority.",
+        "!law Review the PIPEDA, CCPA/CPRA (including whether a “Do not sell or share” link is needed) and GDPR wording, and whether an EU/UK representative is required. Add Korea (PIPA) if Tiny Us launches there.",
       ],
     },
     {
@@ -131,7 +134,7 @@ export const PRIVACY: LegalDoc = {
       h: "Security and where data is stored",
       blocks: [
         "We use the security measures built into our providers (encryption in transit, access controls) to protect your information. No system is perfectly secure, so please keep your sign-in account safe.",
-        "Your information is stored on Google Cloud servers, which may be in the United States or other countries. Where the law requires, we use safeguards such as standard contractual clauses for transfers.",
+        "We’re based in Canada, and your information is stored on Google Cloud servers, which may be in the United States or other countries. It may be accessed there by courts, law enforcement and national security authorities under those countries’ laws. Where the law requires, we use safeguards such as standard contractual clauses for transfers.",
         "!dev Confirm the Firebase project region(s).",
       ],
     },
@@ -143,7 +146,7 @@ export const PRIVACY: LegalDoc = {
     },
     {
       h: "Contact",
-      blocks: [`Email ${email}. We’re happy to help.`],
+      blocks: [`${who}. Email ${email}. We’re happy to help.`],
     },
   ],
 };
@@ -151,8 +154,8 @@ export const PRIVACY: LegalDoc = {
 export const TERMS: LegalDoc = {
   title: "Terms of Use",
   intro: [
-    `These terms are an agreement between you and ${TINYUS.company} (“we”, “us”) for using Tiny Us (the app and this website). By using Tiny Us, you agree to them and to our Privacy Policy. If you don’t agree, please don’t use Tiny Us.`,
-    "!law Add the legal entity name and address, and decide whether these terms are the app’s EULA (then keep the App Store section below) or whether we use Apple’s standard EULA.",
+    `These terms are an agreement between you and ${who} (“we”, “us”) for using Tiny Us (the app and this website). By using Tiny Us, you agree to them and to our Privacy Policy. If you don’t agree, please don’t use Tiny Us.`,
+    "!law Decide whether these terms are the app’s EULA (then keep the App Store section below) or whether we use Apple’s standard EULA.",
   ],
   sections: [
     {
@@ -181,20 +184,19 @@ export const TERMS: LegalDoc = {
       blocks: [
         "Tiny Us is free to use. Tiny Us Plus is an optional paid upgrade, offered as a monthly or yearly subscription or a one-time lifetime purchase. Prices are shown in the app before you buy.",
         [
-          "Plus is shared: when one of you buys it, your linked person gets Plus too, for as long as you stay linked and the purchase is active.",
+          "Plus is shared: when one of you buys it, your linked person gets Plus too, for as long as you stay linked and the purchase is active. If you unlink, the person who didn’t pay keeps Plus for 7 more days.",
           "Subscriptions renew automatically unless you cancel at least 24 hours before the end of the current period. Your account is charged for the renewal within 24 hours before the period ends.",
           "Manage or cancel your subscription in your App Store account settings or in Google Play → Subscriptions. Deleting the app or your Tiny Us account doesn’t cancel it.",
-          "Payments and refunds are handled by Apple or Google under their terms. We can’t issue refunds for purchases made through them.",
+          `Refunds: App Store purchases are refunded by Apple (reportaproblem.apple.com). Google Play purchases can be refunded by Google within its refund window, and we review other requests case by case at ${email}. Unlinking or deleting your account doesn’t refund or cancel anything by itself.`,
           "Lifetime means for as long as we offer Tiny Us. It isn’t transferable to another person outside your link.",
         ],
-        "!dev Confirm: what the partner keeps after unlinking or when Plus ends, and how Plus sharing works if both partners have bought it.",
+        "!dev Confirm how Plus sharing works if both partners have bought it, and the 7-day promo entitlement after unlink (RevenueCat).",
       ],
     },
     {
       h: "Coins and items",
       blocks: [
-        "Coins and in-app items (furniture, outfits, gifts, seasonal boxes and so on) are a license to use them inside Tiny Us. They have no cash value, can’t be exchanged for money, and can’t be sold or transferred outside the app. Coins are shared by you and your linked person. Purchased coins are used up when spent and are non-refundable except where the law says otherwise.",
-        "!dev Confirm what happens to the shared wallet and items when a couple unlinks.",
+        "Coins and in-app items (furniture, outfits, gifts, seasonal boxes and so on) are a license to use them inside Tiny Us. They have no cash value, can’t be exchanged for money, and can’t be sold or transferred outside the app. Coins are shared by you and your linked person. If you unlink and don’t re-link within 30 days, the coins are split evenly between you and you both keep a copy of your furniture and outfits. Purchased coins are used up when spent and are non-refundable except where the law says otherwise.",
       ],
     },
     {
@@ -217,7 +219,13 @@ export const TERMS: LegalDoc = {
       h: "Disclaimers and liability",
       blocks: [
         "Tiny Us is provided “as is”. To the extent the law allows, we don’t make warranties beyond those stated here, and we aren’t liable for indirect or consequential losses. Our total liability is limited to the amount you paid us in the 12 months before the claim. Some places don’t allow these limits, so they may not apply to you.",
-        "!law Review disclaimers, the liability cap, governing law and venue, and whether to add an arbitration clause for US users.",
+        "!law Review disclaimers and the liability cap (Ontario + US consumer law), and whether to add an arbitration clause for US users.",
+      ],
+    },
+    {
+      h: "Governing law",
+      blocks: [
+        "These terms are governed by the laws of the Province of Ontario and the federal laws of Canada that apply there, without regard to conflict-of-law rules. Any dispute will be handled by the courts of Ontario, unless the law where you live gives you the right to bring it in your local courts. Nothing here takes away rights you have under the consumer protection laws of where you live.",
       ],
     },
     {
@@ -228,7 +236,7 @@ export const TERMS: LegalDoc = {
     },
     {
       h: "Contact",
-      blocks: [`Questions about these terms: ${email}.`],
+      blocks: [`Questions about these terms: ${email}. ${who}.`],
     },
   ],
 };
