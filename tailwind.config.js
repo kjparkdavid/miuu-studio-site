@@ -6,6 +6,7 @@ module.exports = {
       fontFamily: {
         display: ["var(--font-display)", "var(--font-ko)", "system-ui", "sans-serif"],
         body: ["var(--font-display)", "var(--font-ko)", "system-ui", "sans-serif"],
+        tu: ["var(--font-tu)", "var(--font-ko)", "system-ui", "sans-serif"],
       },
       // Same brand tokens as miuunote.site, taken from the app's own UI
       colors: {
@@ -18,6 +19,18 @@ module.exports = {
         sky: "#DCEBFF",
         butter: "#FFF3C9",
         night: "#1B1838",
+        // Tiny Us pages (/tinyus): clean v2 Soft UI tokens, light + dark, defined as CSS variables in globals.css
+        tu: {
+          page: "var(--tu-page)",
+          card: "var(--tu-card)",
+          ink: "var(--tu-ink)",
+          caption: "var(--tu-caption)",
+          violet: "var(--tu-violet)",
+          accent: "var(--tu-accent)",
+          lilac: "var(--tu-lilac)",
+          line: "var(--tu-line)",
+          night: "var(--tu-night)",
+        },
       },
       boxShadow: {
         card: "0 1px 0 rgba(43, 34, 64, 0.04), 0 12px 32px -16px rgba(43, 34, 64, 0.18)",

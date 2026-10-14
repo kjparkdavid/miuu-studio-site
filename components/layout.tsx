@@ -51,6 +51,7 @@ export default function Layout({ locale, path, title, description, image = "/bra
               <Link href={localePath(locale, "/comics/")} className="rounded-full px-3 py-2 hover:bg-lilac">{t.navComics}</Link>
               <a href={`${home}#reels`} className="rounded-full px-3 py-2 hover:bg-lilac">{t.navReels}</a>
               <a href={`${home}#apps`} className="rounded-full px-3 py-2 hover:bg-lilac">{t.navApps}</a>
+              <Link href={localePath(locale, "/tinyus/")} className="rounded-full px-3 py-2 hover:bg-lilac">{t.navTinyUs}</Link>
               <a href={`${home}#collab`} className="rounded-full px-3 py-2 hover:bg-lilac">{t.navCollab}</a>
               <a href={LINKS.giphy} target="_blank" rel="noopener" className="rounded-full px-3 py-2 hover:bg-lilac">GIPHY ↗</a>
             </div>

@@ -41,6 +41,51 @@
   }
 }
 
+/* Tiny Us pages: v2 Soft UI (Figtree, violet #651DFF, page #F7F6FB, white cards, captions #6F6B7B), light + dark */
+.tu {
+  --tu-page: #f7f6fb;
+  --tu-card: #ffffff;
+  --tu-ink: #1f1d2b;
+  --tu-caption: #6f6b7b;
+  --tu-violet: #651dff; /* fills (buttons, chips); white text on it in both themes */
+  --tu-accent: #651dff; /* violet used as text */
+  --tu-lilac: #efebff;
+  --tu-line: rgba(31, 29, 43, 0.08);
+  --tu-night: #24205a;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  .tu {
+    --tu-page: #121019;
+    --tu-card: #1d1a27;
+    --tu-ink: #f4f2fa;
+    --tu-caption: #a9a4b8;
+    --tu-violet: #6a2bff;
+    --tu-accent: #b69cff;
+    --tu-lilac: #2a2340;
+    --tu-line: rgba(255, 255, 255, 0.09);
+    --tu-night: #1c1948;
+    color-scheme: dark;
+  }
+}
+
+/* overscroll behind the Tiny Us pages matches their page colour (the variables live on .tu, below body) */
+body:has(.tu) {
+  background: #f7f6fb;
+}
+
+@media (prefers-color-scheme: dark) {
+  body:has(.tu) {
+    background: #121019;
+  }
+}
+
+/* pixel art is only ever scaled with nearest-neighbour */
+.pixelated {
+  image-rendering: pixelated;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-float,
   .animate-float-slow,

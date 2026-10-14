@@ -8,7 +8,22 @@ const FORM_URL =
   "https://docs.google.com/forms/d/e/1FAIpQLSc08pJ06M3LzqCHsT7mHMCl4_M91ykJGh1Wm5QzZY1naP9fuA/formResponse";
 const EMAIL_FIELD = "entry.2117171086";
 
-export default function Waitlist({ locale }: { locale: Locale }) {
+// "tinyus" = the same form in the Tiny Us look (v2 Soft UI tokens, light + dark) on /tinyus pages
+const LOOK = {
+  studio: {
+    done: "mt-5 rounded-2xl bg-white px-4 py-3 text-sm font-semibold",
+    input: "rounded-full border border-ink/15 bg-white px-4 py-2.5 text-sm outline-none focus:border-violet",
+    button: "pill shrink-0 bg-ink text-white hover:bg-violet",
+  },
+  tinyus: {
+    done: "mt-5 rounded-2xl bg-tu-card px-4 py-3 text-sm font-semibold text-tu-ink",
+    input: "rounded-full border border-tu-line bg-tu-card px-4 py-3 text-base text-tu-ink outline-none placeholder:text-tu-caption focus:border-tu-accent",
+    button: "pill shrink-0 bg-tu-violet py-3 text-white hover:brightness-110",
+  },
+};
+
+export default function Waitlist({ locale, look = "studio", id = "waitlist" }: { locale: Locale; look?: keyof typeof LOOK; id?: string }) {
+  const L = LOOK[look];
   const t = UI[locale];
   const [email, setEmail] = useState("");
   const [done, setDone] = useState(false);
@@ -22,24 +37,24 @@ export default function Waitlist({ locale }: { locale: Locale }) {
   };
 
   if (done) {
-    return <p className="mt-5 rounded-2xl bg-white px-4 py-3 text-sm font-semibold">{t.waitlistDone}</p>;
+    return <p className={L.done} role="status">{t.waitlistDone}</p>;
   }
 
   return (
     <form onSubmit={submit} className="mt-5 flex max-w-sm gap-2">
-      <label className="sr-only" htmlFor={`waitlist-${locale}`}>
+      <label className="sr-only" htmlFor={`${id}-${locale}`}>
         Email
       </label>
       <input
-        id={`waitlist-${locale}`}
+        id={`${id}-${locale}`}
         type="email"
         required
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder={t.waitlistPlaceholder}
-        className="min-w-0 flex-1 rounded-full border border-ink/15 bg-white px-4 py-2.5 text-sm outline-none focus:border-violet"
+        className={`min-w-0 flex-1 ${L.input}`}
       />
-      <button type="submit" className="pill shrink-0 bg-ink text-white hover:bg-violet">
+      <button type="submit" className={L.button}>
         {t.waitlistCta}
       </button>
     </form>
