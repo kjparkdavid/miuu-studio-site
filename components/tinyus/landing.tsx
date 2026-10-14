@@ -51,7 +51,9 @@ function Icon({ name }: { name: keyof typeof ICONS }) {
   );
 }
 
-const GROW = ["grow1", "grow2", "grow3", "paris", "mystery"] as const;
+const GROW = ["grow1", "grow2", "grow3", "city", "mystery"] as const;
+// Day 14 can also be a move: the "new city" tile cycles New York → Paris → Tokyo (Paris only with reduced motion)
+const CITIES = ["nyc", "paris", "tokyo"] as const;
 
 export default function TinyLanding({ locale }: { locale: Locale }) {
   const t = tinyCopy(locale);
@@ -104,9 +106,17 @@ export default function TinyLanding({ locale }: { locale: Locale }) {
             <ol className="-mx-5 mt-6 flex snap-x gap-3 overflow-x-auto px-5 pb-1 sm:-mx-7 sm:px-7 md:mx-0 md:justify-between md:overflow-visible md:px-0">
               {GROW.map((g, i) => (
                 <li key={g} className="w-36 shrink-0 snap-start">
-                  <div className="overflow-hidden rounded-2xl">
-                    <img src={`/tinyus/art/${g}.png`} alt={t.growAlts[i]} width={144} height={192} loading="lazy" className="pixelated block h-48 w-36" />
-                  </div>
+                  {g === "city" ? (
+                    <div className="tu-cycle overflow-hidden rounded-2xl" role="img" aria-label={t.growAlts[i]}>
+                      {CITIES.map((c) => (
+                        <img key={c} src={`/tinyus/art/city-${c}.png`} alt="" width={144} height={192} loading="lazy" className="pixelated block h-48 w-36" />
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="overflow-hidden rounded-2xl">
+                      <img src={`/tinyus/art/${g}.png`} alt={t.growAlts[i]} width={144} height={192} loading="lazy" className="pixelated block h-48 w-36" />
+                    </div>
+                  )}
                   <p className={`mt-2 text-center text-sm font-bold ${i === 4 ? "text-tu-accent" : ""}`}>{t.growLabels[i]}</p>
                 </li>
               ))}
