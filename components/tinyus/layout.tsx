@@ -1,9 +1,9 @@
 import Head from "next/head";
 import Link from "next/link";
 import { Figtree } from "next/font/google";
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import { Locale, SITE_URL } from "@/lib/i18n";
-import { TINYUS, tinyCopy, tinyPath } from "@/lib/tinyus";
+import { TINYUS, TINY_SHIPPED, tinyBuiltPath, tinyCopy, tinyLive, tinyPath } from "@/lib/tinyus";
 
 // Tiny Us has its own look (clean v2 Soft UI, light + dark) and its own header/footer; the studio brand only
 // appears as "Made by Miuu Studio" in the footer. Self-contained under /tinyus so it can move to its own domain.
@@ -23,6 +23,13 @@ export default function TinyLayout({ locale, page = "", title, description, noin
   const other: Locale = locale === "en" ? "ko" : "en";
   const home = tinyPath(locale);
   const url = SITE_URL + tinyPath(locale, page);
+  const hidden = !tinyLive(locale);
+  const showSwitch = tinyLive(other);
+
+  // a hidden locale's page forwards to the English one (keeping ?code= on invite links)
+  useEffect(() => {
+    if (hidden) location.replace(tinyPath("en", page) + location.search + location.hash);
+  }, [hidden, page]);
   const og = `${SITE_URL}/tinyus/brand/og.png`;
 
   return (
@@ -31,11 +38,14 @@ export default function TinyLayout({ locale, page = "", title, description, noin
         <title>{title}</title>
         <meta name="description" content={description} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        {noindex && <meta name="robots" content="noindex" />}
+        {(noindex || hidden) && <meta name="robots" content="noindex" />}
+        {hidden && <meta httpEquiv="refresh" content={`1; url=${tinyPath("en", page)}`} />}
         <link rel="canonical" href={url} />
-        <link rel="alternate" hrefLang="en" href={SITE_URL + tinyPath("en", page)} />
-        <link rel="alternate" hrefLang="ko" href={SITE_URL + tinyPath("ko", page)} />
-        <link rel="alternate" hrefLang="x-default" href={SITE_URL + tinyPath("en", page)} />
+        {TINY_SHIPPED.length > 1 &&
+          TINY_SHIPPED.map((l) => (
+            <link key={l} rel="alternate" hrefLang={l} href={SITE_URL + tinyBuiltPath(l as Locale, page)} />
+          ))}
+        {TINY_SHIPPED.length > 1 && <link rel="alternate" hrefLang="x-default" href={SITE_URL + tinyPath("en", page)} />}
         <meta name="theme-color" content="#F7F6FB" media="(prefers-color-scheme: light)" />
         <meta name="theme-color" content="#121019" media="(prefers-color-scheme: dark)" />
         <meta property="og:type" content="website" />
@@ -66,13 +76,15 @@ export default function TinyLayout({ locale, page = "", title, description, noin
               <a href={`${home}#faq`} className="rounded-full px-3 py-2 hover:bg-tu-lilac">{t.navFaq}</a>
               <Link href={tinyPath(locale, "support")} className="rounded-full px-3 py-2 hover:bg-tu-lilac">{t.navSupport}</Link>
             </div>
-            <Link
-              href={tinyPath(other, page)}
-              lang={other}
-              className="rounded-full border border-tu-line px-3 py-1.5 hover:border-tu-accent hover:text-tu-accent"
-            >
-              {t.switchLang}
-            </Link>
+            {showSwitch && (
+              <Link
+                href={tinyPath(other, page)}
+                lang={other}
+                className="rounded-full border border-tu-line px-3 py-1.5 hover:border-tu-accent hover:text-tu-accent"
+              >
+                {t.switchLang}
+              </Link>
+            )}
           </nav>
         </div>
       </header>

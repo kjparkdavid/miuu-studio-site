@@ -4,6 +4,7 @@ import { SeriesCard } from "@/components/comicCard";
 import Waitlist from "@/components/waitlist";
 import { APPS, CHARACTERS, LINKS, REELS, SERIES, STATS } from "@/lib/content";
 import { Locale, UI, localePath } from "@/lib/i18n";
+import { tinyPath } from "@/lib/tinyus";
 import { Cloud, Heart, Planet, Sparkle, Star, Wave } from "@/components/doodles";
 
 export default function HomePage({ locale }: { locale: Locale }) {
@@ -149,7 +150,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
               {app.id === "tiny-us" && (
                 <>
                   <Waitlist locale={locale} />
-                  <Link href={localePath(locale, "/tinyus/")} className="mt-4 self-start text-sm font-bold text-violet underline-offset-4 hover:underline">
+                  <Link href={tinyPath(locale)} className="mt-4 self-start text-sm font-bold text-violet underline-offset-4 hover:underline">
                     {t.tinyUsMore} →
                   </Link>
                 </>

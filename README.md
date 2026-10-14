@@ -17,7 +17,7 @@ Tiny Us's own section, self-contained so it can move to its own domain later: it
 in `tailwind.config.js` + `.tu` CSS variables in `styles/globals.css`, light + dark), header and footer.
 
 - `lib/tinyus.ts` — **`TINYUS_LAUNCHED`** (false = Phase 1: waitlist + follow, "Coming soon"; true = store badges), store URLs,
-  Instagram, **support email** (one constant), EN/KO copy, the 15-locale structure (`TINY_LOCALES`; EN + KO shipped)
+  Instagram, **support email** (one constant), EN/KO copy, the 15-locale structure (`TINY_LOCALES`; `TINY_SHIPPED` = live locales, EN only for now: KO is hidden, its pages forward to EN)
 - `lib/tinyusLegal.ts` — Privacy Policy + Terms of Use. **DRAFT**: `LEGAL_DRAFT` shows the banner, the "Confirm with dev" /
   "Lawyer review" flags and `noindex`. Korean URLs show the English text with a note until a reviewed Korean version exists.
 - `components/tinyus/` — `layout`, `landing`, `getTinyUs` (the CTA for both phases + store badges), `pixelHome` (the animated

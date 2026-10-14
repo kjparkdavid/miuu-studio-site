@@ -24,7 +24,14 @@ export const TINYUS = {
   inviteCode: /^[A-Z0-9]{4}-?[A-Z0-9]{4}$/,
 };
 
+// Links always point at a live locale: a hidden locale's links go to the English page.
 export function tinyPath(locale: Locale, page = "") {
+  const live = tinyLive(locale) ? locale : "en";
+  return `${live === "ko" ? "/ko" : ""}/tinyus/${page ? `${page}/` : ""}`;
+}
+
+// The URL a locale's page is actually built at (even while that locale is hidden)
+export function tinyBuiltPath(locale: Locale, page = "") {
   return `${locale === "ko" ? "/ko" : ""}/tinyus/${page ? `${page}/` : ""}`;
 }
 
@@ -33,7 +40,10 @@ export function tinyPath(locale: Locale, page = "") {
 // ships EN + KO first. To add one: add its copy to TINY_COPY below, add pages/<locale>/tinyus/*, and list it in SHIPPED.
 export const TINY_LOCALES = ["en", "ko", "ja", "zh-Hans", "zh-Hant", "es", "pt", "fr", "de", "it", "ru", "tr", "th", "id", "ar"] as const;
 export type TinyLocale = (typeof TINY_LOCALES)[number];
-export const TINY_SHIPPED: TinyLocale[] = ["en", "ko"];
+// KO hidden by the user (10-14): its copy and pages stay in the code, but no link points there, it's out of the
+// sitemap/hreflang, and /ko/tinyus/* forwards to English. Add "ko" back here to show it again.
+export const TINY_SHIPPED: TinyLocale[] = ["en"];
+export const tinyLive = (l: string) => (TINY_SHIPPED as string[]).includes(l);
 
 type QA = readonly [string, string];
 
