@@ -15,8 +15,8 @@ export const TINYUS = {
     appStore: "https://apps.apple.com/app/idTODO",
     googlePlay: "https://play.google.com/store/apps/details?id=TODO",
   },
-  // @tinyushome until launch; the main account moves to @tinyus.app at launch (HANDOFF "IG handle").
-  instagram: { handle: "@tinyushome", url: "https://www.instagram.com/tinyushome/" },
+  // @tinyus.app from Phase 1 on, no launch swap (founder 10-15: @tinyushome was suspended; HANDOFF "IG handle").
+  instagram: { handle: "@tinyus.app", url: "https://www.instagram.com/tinyus.app/" },
   // tinyus@miuustudio.com, created by the user 10-14: the one place to change the support address on every Tiny Us page.
   supportEmail: "tinyus@miuustudio.com",
   company: "Miuu Studio",
