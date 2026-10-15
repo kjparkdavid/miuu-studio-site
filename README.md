@@ -29,7 +29,7 @@ in `tailwind.config.js` + `.tu` CSS variables in `styles/globals.css`, light + d
   secret-note-main (`python3 make_site_art.py ~/Development/miuu-studio-site`); rerun it instead of editing the PNGs
 - `tinyus-links/` — apple-app-site-association + assetlinks.json, prepared but **not shipped** (see its README)
 
-Launch day: fill `TINYUS.store`, add the official badge artwork, flip `TINYUS_LAUNCHED` (Instagram is already @tinyus.app since 10-15, no switch).
+Launch day: fill `TINYUS.store`, add the official badge artwork, flip `TINYUS_LAUNCHED`, switch Instagram to @tinyus.app.
 
 ## Adding things
 
