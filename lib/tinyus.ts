@@ -21,7 +21,7 @@ export const TINYUS = {
   supportEmail: "tinyus@miuustudio.com",
   company: "Miuu Studio",
   // The publisher named in the Privacy Policy + Terms (user, 10-14). One place to change it.
-  legal: { name: "Miuu Studio", address: "2112-7165 Yonge St, Markham, ON L3T 0C9, Canada" },
+  legal: { name: "Miuu Studio", entity: "a sole proprietorship in Ontario, Canada" },
   // Invite codes are the app's 8-character XXXX-XXXX (dev #378). Universal link: /tinyus/invite/<code>.
   inviteCode: /^[A-Z0-9]{4}-?[A-Z0-9]{4}$/,
 };

@@ -14,7 +14,7 @@ export type LegalSection = { h: string; blocks: readonly Block[] };
 export type LegalDoc = { title: string; intro: readonly Block[]; sections: readonly LegalSection[] };
 
 const email = TINYUS.supportEmail;
-const who = `${TINYUS.legal.name}, ${TINYUS.legal.address}`;
+const who = `${TINYUS.legal.name}, ${TINYUS.legal.entity}`;
 
 export const PRIVACY: LegalDoc = {
   title: "Privacy Policy",
@@ -197,12 +197,12 @@ export const PRIVACY: LegalDoc = {
     {
       h: "Privacy Officer",
       blocks: [
-        `The owner of ${TINYUS.legal.name} is responsible for protecting personal information at Tiny Us (in Quebec: the person in charge of the protection of personal information; in Brazil: the encarregado). Contact: ${email}, ${TINYUS.legal.address}.`,
+        `The owner of ${TINYUS.legal.name} is responsible for protecting personal information at Tiny Us (in Quebec: the person in charge of the protection of personal information; in Brazil: the encarregado). Contact: ${email}.`,
       ],
     },
     {
       h: "Contact",
-      blocks: [`${who}. Email ${email}. We’re happy to help.`],
+      blocks: [`${who}. Email ${email}. We’re happy to help. Our mailing address is available on request.`],
     },
   ],
 };
