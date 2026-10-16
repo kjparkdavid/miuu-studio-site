@@ -1,0 +1,23 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.miuustudio.tinyus",
+      "sha256_cert_fingerprints": [
+        "FA:11:FE:A0:D7:B0:D2:C6:C0:23:6A:62:2E:44:1D:2D:3B:6F:8A:86:DA:12:92:E2:CE:40:80:11:60:7B:B8:16",
+        "3A:76:48:C0:07:11:D8:2A:F8:68:50:38:88:BD:2C:72:F8:FA:72:A5:8B:0C:5E:FE:69:F4:8E:98:AB:12:5F:16"
+      ]
+    }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.miuustudio.tinyus.staging",
+      "sha256_cert_fingerprints": [
+        "23:83:71:98:DB:BF:A0:E6:AC:11:8A:66:49:97:D3:A9:EA:FE:0E:60:73:08:93:7E:A2:FB:2C:1F:B2:25:1B:79"
+      ]
+    }
+  }
+]

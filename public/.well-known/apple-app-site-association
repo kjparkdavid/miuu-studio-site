@@ -1,0 +1,16 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["5Q3ADBCCFS.com.miuustudio.tinyus"],
+        "components": [{ "/": "/tinyus/invite/*", "comment": "Tiny Us invite links" }],
+        "paths": ["/tinyus/invite/*"]
+      },
+      {
+        "appIDs": ["5Q3ADBCCFS.com.miuustudio.tinyus.staging"],
+        "components": [{ "/": "/tinyus-staging/invite/*", "comment": "Tiny Us staging invite links" }],
+        "paths": ["/tinyus-staging/invite/*"]
+      }
+    ]
+  }
+}
