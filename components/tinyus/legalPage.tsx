@@ -8,7 +8,7 @@ import TinyLayout from "./layout";
 const FLAG = { dev: "Confirm with dev", law: "Lawyer review" } as const;
 
 // emails and the few web addresses in the text become links
-const LINK = /([\w.+-]+@[\w-]+\.[\w.]+|miuustudio\.com\/tinyus\/[a-z-]+|reportaproblem\.apple\.com|priv\.gc\.ca)/g;
+const LINK = /([\w.+-]+@[\w-]+\.[\w.]+|miuustudio\.com\/tinyus\/[a-z-]+|reportaproblem\.apple\.com|priv\.gc\.ca|cai\.gouv\.qc\.ca|kopico\.go\.kr|privacy\.kisa\.or\.kr)/g;
 function linkify(text: string): ReactNode[] {
   return text.split(LINK).map((part, i) => {
     if (i % 2 === 0) return part;
