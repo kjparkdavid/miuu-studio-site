@@ -10,6 +10,7 @@ Next.js 15 static export + Tailwind, deployed to GitHub Pages by `.github/workfl
 - `components/` — `layout` (head/SEO, header, footer), `homePage`, `comicsPage` (series list), `seriesPage`, `comicReader`, `comicCard`
 - `pages/` — thin wrappers; every page exists twice (`pages/…` and `pages/ko/…`)
 - `public/comic-art/<episode>/<en|ko>/01.jpg…` + `cover.jpg` (1080px JPEG); `public/reels/<id>.mp4` + `<id>.jpg` poster; `public/characters/`, `public/apps/`, `public/brand/`
+- `public/app-ads.txt` — authorises the studio's AdMob account (`pub-9441822379589008`) to sell ads in its apps; AdMob reads it from the site named in each store listing. One line per ad network: keep the Google line as it is
 
 ## Tiny Us (`/tinyus`)
 
