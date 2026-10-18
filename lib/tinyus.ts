@@ -14,6 +14,8 @@ export const TINYUS = {
   store: {
     appStore: "https://apps.apple.com/app/idTODO",
     googlePlay: "https://play.google.com/store/apps/details?id=TODO",
+    // TODO(#450): the numeric App Store id. While it's "TODO" the Smart App Banner meta stays off.
+    appStoreId: "TODO",
   },
   // @tinyushome until launch; the main account moves to @tinyus.app at launch (HANDOFF "IG handle").
   instagram: { handle: "@tinyushome", url: "https://www.instagram.com/tinyushome/" },
@@ -24,7 +26,18 @@ export const TINYUS = {
   legal: { name: "Miuu Studio", entity: "a sole proprietorship in Ontario, Canada" },
   // Invite codes are the app's 8-character XXXX-XXXX (dev #378). Universal link: /tinyus/invite/<code>.
   inviteCode: /^[A-Z0-9]{4}-?[A-Z0-9]{4}$/,
+  // The app's URL schemes (dev #1212): "Open Tiny Us" on the invite page = <scheme>://invite/<CODE>.
+  scheme: { prod: "tinyus", staging: "tinyus-staging" },
 };
+
+// ---------- invite links (dev #1212) ----------
+// The universal link the app reads from the clipboard after an App Store install ("I have an invite code" → Paste).
+export const inviteUniversalLink = (code: string, staging = false) =>
+  `https://miuustudio.com/${staging ? "tinyus-staging" : "tinyus"}/invite/${code}`;
+// Google Play with the install referrer, so the app links up on first open (+ the GA4 campaign: utm_source invite, utm_medium partner).
+export const playInviteUrl = (code: string) =>
+  `${TINYUS.store.googlePlay}&referrer=${encodeURIComponent(`tinyus_invite=${code}&utm_source=invite&utm_medium=partner`)}`;
+export const openAppUrl = (code: string, staging = false) => `${staging ? TINYUS.scheme.staging : TINYUS.scheme.prod}://invite/${code}`;
 
 // Links always point at a live locale: a hidden locale's links go to the English page.
 export function tinyPath(locale: Locale, page = "") {
@@ -325,7 +338,9 @@ export const TINY_PAGES = {
     inviteValid: "Codes work for 7 days.",
     inviteNoCode: "Ask your person to share their invite code from Settings → Partner link.",
     invitePrelaunch: "Tiny Us isn’t out yet. Leave your email and we’ll tell you the day you can move in.",
-    inviteSteps: ["Get Tiny Us", "Tap “I have an invite code”", "Enter the code"],
+    inviteSteps: ["Get Tiny Us", "Tap “I have an invite code”", "Tap Paste"],
+    inviteCopiedLink: "We copied your code. In Tiny Us, tap “I have an invite code”, then Paste.",
+    inviteOpen: "Open Tiny Us",
   },
   ko: {
     supportTitle: "고객지원",
@@ -368,6 +383,8 @@ export const TINY_PAGES = {
     inviteValid: "코드는 7일 동안 쓸 수 있어요.",
     inviteNoCode: "상대에게 설정 → 파트너 연결에서 초대 코드를 공유해 달라고 해 주세요.",
     invitePrelaunch: "Tiny Us는 아직 출시 전이에요. 이메일을 남겨 주시면 이사 올 수 있는 날 알려드릴게요.",
-    inviteSteps: ["Tiny Us 받기", "“초대 코드가 있어요” 누르기", "코드 입력하기"],
+    inviteSteps: ["Tiny Us 받기", "“초대 코드가 있어요” 누르기", "붙여넣기 누르기"],
+    inviteCopiedLink: "코드를 복사했어요. Tiny Us에서 “초대 코드가 있어요”를 누르고 붙여넣기를 눌러 주세요.",
+    inviteOpen: "Tiny Us 열기",
   },
 } satisfies Record<Locale, Record<string, unknown>>;

@@ -4,12 +4,13 @@ import Layout from "@/components/layout";
 
 // GitHub Pages serves this for every unknown path. Tiny Us invite links (/tinyus/invite/ABCD-1234/) have no page
 // of their own in a static export, so they're forwarded to the invite page with the code in the query.
-const INVITE = /^\/(ko\/)?tinyus\/invite\/([A-Za-z0-9-]{8,9})\/?$/;
+// dev #1212: the staging app's links (/tinyus-staging/invite/<code>/) forward the same way.
+const INVITE = /^\/(ko\/)?(tinyus|tinyus-staging)\/invite\/([A-Za-z0-9-]{8,9})\/?$/;
 
 export default function NotFound() {
   useEffect(() => {
     const m = location.pathname.match(INVITE);
-    if (m) location.replace(`/${m[1] || ""}tinyus/invite/?code=${encodeURIComponent(m[2])}`);
+    if (m) location.replace(m[2] === "tinyus-staging" ? `/tinyus-staging/invite/?code=${encodeURIComponent(m[3])}` : `/${m[1] || ""}tinyus/invite/?code=${encodeURIComponent(m[3])}`);
   }, []);
 
   return (

@@ -40,18 +40,19 @@ export default function GetTinyUs({ locale, id, onDark = false }: { locale: Loca
 
 // TODO(launch): swap these text badges for Apple's and Google's official badge artwork (their brand rules require it):
 // public/tinyus/badges/app-store-<locale>.svg and google-play-<locale>.png.
-export function StoreBadges({ locale }: { locale: Locale }) {
+// The invite page (dev #1212) passes a Play link with the install referrer and an App Store tap that also copies the invite link.
+export function StoreBadges({ locale, googlePlayHref, onAppStore }: { locale: Locale; googlePlayHref?: string; onAppStore?: () => void }) {
   const t = tinyCopy(locale);
   const badge = "flex h-14 min-w-[172px] flex-col justify-center rounded-xl bg-black px-4 text-white ring-1 ring-white/15 hover:opacity-90";
   return (
     <div className="flex flex-wrap gap-3">
       {(
         [
-          [TINYUS.store.appStore, t.badgeAppStore],
-          [TINYUS.store.googlePlay, t.badgeGooglePlay],
+          [TINYUS.store.appStore, t.badgeAppStore, onAppStore],
+          [googlePlayHref || TINYUS.store.googlePlay, t.badgeGooglePlay, undefined],
         ] as const
-      ).map(([href, [small, big]]) => (
-        <a key={href} href={href} target="_blank" rel="noopener" className={badge}>
+      ).map(([href, [small, big], onClick]) => (
+        <a key={href} href={href} target="_blank" rel="noopener" className={badge} onClick={onClick}>
           <span className="text-[11px] font-semibold leading-none">{small}</span>
           <span className="mt-1 text-xl font-bold leading-none">{big}</span>
         </a>
