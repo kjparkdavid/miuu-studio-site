@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Head from "next/head";
 import { Locale } from "@/lib/i18n";
-import { TINYUS, TINYUS_LAUNCHED, TINY_PAGES, inviteUniversalLink, openAppUrl, playInviteUrl } from "@/lib/tinyus";
+import { TINYUS, TINYUS_LAUNCHED, TINYUS_ON_APP_STORE, TINY_PAGES, inviteUniversalLink, openAppUrl, playInviteUrl } from "@/lib/tinyus";
 import TinyLayout from "./layout";
 import PixelHome from "./pixelHome";
 import GetTinyUs, { StoreBadges } from "./getTinyUs";
@@ -85,6 +85,7 @@ export default function InvitePage({ locale, staging = false }: { locale: Locale
               <div className="mt-7">
                 <StoreBadges locale={locale} googlePlayHref={code && !staging ? playInviteUrl(code) : undefined} onAppStore={copyLink} />
               </div>
+              {!TINYUS_ON_APP_STORE && !staging && <p className="mt-4 text-sm text-tu-caption">{p.inviteIphoneSoon}</p>}
               {linkCopied && (
                 <p role="status" className="mt-4 rounded-2xl bg-tu-lilac px-4 py-3 text-sm font-semibold text-tu-accent">{p.inviteCopiedLink}</p>
               )}

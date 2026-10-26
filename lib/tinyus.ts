@@ -6,14 +6,18 @@ import { Locale } from "@/lib/i18n";
 // ---------- launch switch ----------
 // false = Phase 1 (now → launch): waitlist + follow CTA, "Coming soon", no store links, no price.
 // true  = Phase 2 (launch day): App Store / Google Play badges everywhere. Fill STORE before flipping.
-export const TINYUS_LAUNCHED = false;
+// Live since the Android launch (2026-10-18); the App Store waits on TINYUS_ON_APP_STORE.
+export const TINYUS_LAUNCHED = true;
+// false while App Store 1.0 is in review: the App Store badge says "Coming soon" and links nowhere, and the copy says
+// iPhone is coming. Flip it with store.appStore and store.appStoreId on the App Store's release day.
+export const TINYUS_ON_APP_STORE = false;
 
 export const TINYUS = {
   base: "/tinyus/",
   // TODO(launch): real store URLs. Badges also need Apple's / Google's official artwork in public/tinyus/badges/.
   store: {
     appStore: "https://apps.apple.com/app/idTODO",
-    googlePlay: "https://play.google.com/store/apps/details?id=TODO",
+    googlePlay: "https://play.google.com/store/apps/details?id=com.miuustudio.tinyus",
     // TODO(#450): the numeric App Store id. While it's "TODO" the Smart App Banner meta stays off.
     appStoreId: "TODO",
   },
@@ -75,6 +79,7 @@ export type TinyCopy = {
   heroBody: string;
   heroNote: string;
   heroNoteLive: string;
+  heroNoteAndroid: string;
   heroAlt: string;
   waitlistLabel: string;
   follow: (handle: string) => string;
@@ -116,6 +121,7 @@ export type TinyCopy = {
   footerMadeBy: string;
   badgeAppStore: [string, string];
   badgeGooglePlay: [string, string];
+  badgeAppStoreSoon: [string, string];
 };
 
 const en: TinyCopy = {
@@ -133,6 +139,7 @@ const en: TinyCopy = {
     "Answer one question a day together. Every day you both answer, your little pixel home grows, and two tiny roommates move in.",
   heroNote: "Coming soon to iPhone and Android. Free to download.",
   heroNoteLive: "Free to download on iPhone and Android.",
+  heroNoteAndroid: "Free to download on Android. Coming soon to iPhone.",
   heroAlt: "Two pixel cats snuggling in a tiny house at night",
   waitlistLabel: "Get an email when it’s out",
   follow: (h) => `Follow ${h}`,
@@ -201,7 +208,7 @@ const en: TinyCopy = {
     ["We’re long distance. Is it for us?", "Very much. One question a day is an easy way to keep talking when your schedules and time zones don’t line up."],
     ["Who can see our answers?", "Only the two of you. Your answer stays hidden until your person answers too."],
     ["What if my person hasn’t joined yet?", "Start without them. Answer today’s question, and they’ll see it once they move in."],
-    ["When does it come out?", "Soon, on iPhone and Android. Join the waitlist or follow us and we’ll tell you the day it’s out."],
+    ["Where can I get it?", "On Google Play now, free to download. It’s coming to the App Store soon: follow us and we’ll tell you the day it’s out."],
   ],
   endTitle: "Your tiny home is almost ready",
   endBody: "We’ll let you know the day you can move in.",
@@ -212,6 +219,7 @@ const en: TinyCopy = {
   footerMadeBy: "Made by Miuu Studio",
   badgeAppStore: ["Download on the", "App Store"],
   badgeGooglePlay: ["Get it on", "Google Play"],
+  badgeAppStoreSoon: ["Coming soon to the", "App Store"],
 };
 
 const ko: TinyCopy = {
@@ -227,6 +235,7 @@ const ko: TinyCopy = {
   heroBody: "하루 한 질문에 함께 답해요. 둘 다 답한 날마다 작은 픽셀 집이 자라고, 귀여운 룸메이트 둘이 이사 와요.",
   heroNote: "iPhone과 Android에 곧 나와요. 다운로드는 무료예요.",
   heroNoteLive: "iPhone과 Android에서 무료로 받을 수 있어요.",
+  heroNoteAndroid: "Android에서 무료로 받을 수 있어요. iPhone은 곧 나와요.",
   heroAlt: "밤에 작은 집에서 꼭 붙어 있는 픽셀 고양이 두 마리",
   waitlistLabel: "출시되면 메일로 알려드릴게요",
   follow: (h) => `${h} 팔로우`,
@@ -274,7 +283,7 @@ const ko: TinyCopy = {
     ["장거리 연애인데 괜찮을까요?", "딱이에요. 일정도 시차도 안 맞을 때, 하루 한 질문이면 대화가 이어져요."],
     ["우리 답은 누가 볼 수 있나요?", "둘만 봐요. 내 답은 상대도 답할 때까지 숨겨져요."],
     ["상대가 아직 안 들어왔으면요?", "먼저 시작해도 돼요. 오늘의 질문에 답해 두면, 상대가 들어왔을 때 볼 수 있어요."],
-    ["언제 나오나요?", "곧 iPhone과 Android에 나와요. 알림을 신청하거나 팔로우해 두면 나오는 날 알려드릴게요."],
+    ["어디서 받을 수 있나요?", "지금 Google Play에서 무료로 받을 수 있어요. App Store에도 곧 나와요. 팔로우해 두면 나오는 날 알려드릴게요."],
   ],
   endTitle: "작은 집이 거의 다 준비됐어요",
   endBody: "이사 올 수 있는 날, 바로 알려드릴게요.",
@@ -285,6 +294,7 @@ const ko: TinyCopy = {
   footerMadeBy: "Miuu Studio가 만들었어요",
   badgeAppStore: ["Download on the", "App Store"],
   badgeGooglePlay: ["GET IT ON", "Google Play"],
+  badgeAppStoreSoon: ["곧 출시", "App Store"],
 };
 
 export const TINY_COPY: Partial<Record<TinyLocale, TinyCopy>> = { en, ko };
@@ -341,6 +351,7 @@ export const TINY_PAGES = {
     inviteSteps: ["Get Tiny Us", "Tap “I have an invite code”", "Tap Paste"],
     inviteCopiedLink: "We copied your code. In Tiny Us, tap “I have an invite code”, then Paste.",
     inviteOpen: "Open Tiny Us",
+    inviteIphoneSoon: "On iPhone? Tiny Us is coming to the App Store soon. Your person can send you a new code then.",
   },
   ko: {
     supportTitle: "고객지원",
@@ -386,5 +397,6 @@ export const TINY_PAGES = {
     inviteSteps: ["Tiny Us 받기", "“초대 코드가 있어요” 누르기", "붙여넣기 누르기"],
     inviteCopiedLink: "코드를 복사했어요. Tiny Us에서 “초대 코드가 있어요”를 누르고 붙여넣기를 눌러 주세요.",
     inviteOpen: "Tiny Us 열기",
+    inviteIphoneSoon: "iPhone이라면 Tiny Us가 곧 App Store에 나와요. 그때 상대에게 새 코드를 받아 주세요.",
   },
 } satisfies Record<Locale, Record<string, unknown>>;

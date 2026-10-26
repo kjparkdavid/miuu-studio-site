@@ -149,7 +149,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
               <p className="mt-4 max-w-md leading-relaxed text-ink/75">{app.tagline[locale]}</p>
               {app.id === "tiny-us" && (
                 <>
-                  <Waitlist locale={locale} />
+                  {app.status === "soon" && <Waitlist locale={locale} />}
                   <Link href={tinyPath(locale)} className="mt-4 self-start text-sm font-bold text-violet underline-offset-4 hover:underline">
                     {t.tinyUsMore} →
                   </Link>
