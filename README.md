@@ -32,6 +32,16 @@ in `tailwind.config.js` + `.tu` CSS variables in `styles/globals.css`, light + d
 
 Launch day: fill `TINYUS.store`, add the official badge artwork, flip `TINYUS_LAUNCHED`, switch Instagram to @tinyus.app.
 
+## Tiny Spa (`/tinyspa`)
+
+Tiny Spa's support page, Privacy Policy and Terms of Use, on the main site's layout. The store listings, the app's
+Settings and the AdMob consent message link these URLs, so keep them where they are.
+
+- `lib/tinyspaLegal.ts` — all the text, English and Korean (support FAQ + account deletion, policy, terms). Change the policy
+  whenever an SDK in the game changes, together with `docs/release/privacy-answers.md` in kjparkdavid/miuu-game and both store forms
+- `components/tinyspa/page.tsx` — one page shows both languages, its own first (`/tinyspa/…` English, `/ko/tinyspa/…` Korean), `#en` / `#ko`
+- Anchors the stores use: `/tinyspa/privacy/#choices` (App Store "Privacy Choices"), `/tinyspa/#delete` (Google Play's account-deletion URL)
+
 ## Adding things
 
 - **Comic episode:** export pages to `public/comic-art/<slug>/en/01.jpg…` (and `ko/` if there is one) plus `cover.jpg` (page 1 at 480px), add the episode to its series in `lib/content.ts`, add the URLs to `public/sitemap.xml`. An episode without `ko` pages shows the English pages on the Korean site with a note.
