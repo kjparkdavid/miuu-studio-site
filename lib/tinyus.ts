@@ -6,20 +6,21 @@ import { Locale } from "@/lib/i18n";
 // ---------- launch switch ----------
 // false = Phase 1 (now → launch): waitlist + follow CTA, "Coming soon", no store links, no price.
 // true  = Phase 2 (launch day): App Store / Google Play badges everywhere. Fill STORE before flipping.
-// Live since the Android launch (2026-10-18); the App Store waits on TINYUS_ON_APP_STORE.
+// Live since the Android launch (2026-10-18); on the App Store since 2026-11-05 (TINYUS_ON_APP_STORE).
 export const TINYUS_LAUNCHED = true;
-// false while App Store 1.0 is in review: the App Store badge says "Coming soon" and links nowhere, and the copy says
-// iPhone is coming. Flip it with store.appStore and store.appStoreId on the App Store's release day.
-export const TINYUS_ON_APP_STORE = false;
+// true since App Store 1.0's release (2026-11-05): the App Store badge links to store.appStore and the copy names iPhone.
+// false would put back the "Coming soon" badge that links nowhere.
+export const TINYUS_ON_APP_STORE = true;
 
 export const TINYUS = {
   base: "/tinyus/",
-  // TODO(launch): real store URLs. Badges also need Apple's / Google's official artwork in public/tinyus/badges/.
+  // TODO(launch): the badges still need Apple's / Google's official artwork in public/tinyus/badges/.
   store: {
-    appStore: "https://apps.apple.com/app/idTODO",
+    // No storefront in the path, so Apple sends each visitor to their own country's store.
+    appStore: "https://apps.apple.com/app/id6822101689",
     googlePlay: "https://play.google.com/store/apps/details?id=com.miuustudio.tinyus",
-    // TODO(#450): the numeric App Store id. While it's "TODO" the Smart App Banner meta stays off.
-    appStoreId: "TODO",
+    // The App Store's numeric Apple ID (tiny-us eas.json's ascAppId): turns on the invite page's Smart App Banner.
+    appStoreId: "6822101689",
   },
   // @tinyushome until launch; the main account moves to @tinyus.app at launch (HANDOFF "IG handle").
   instagram: { handle: "@tinyushome", url: "https://www.instagram.com/tinyushome/" },
@@ -208,7 +209,7 @@ const en: TinyCopy = {
     ["We’re long distance. Is it for us?", "Very much. One question a day is an easy way to keep talking when your schedules and time zones don’t line up."],
     ["Who can see our answers?", "Only the two of you. Your answer stays hidden until your person answers too."],
     ["What if my person hasn’t joined yet?", "Start without them. Answer today’s question, and they’ll see it once they move in."],
-    ["Where can I get it?", "On Google Play now, free to download. It’s coming to the App Store soon: follow us and we’ll tell you the day it’s out."],
+    ["Where can I get it?", "On the App Store and Google Play, free to download."],
   ],
   endTitle: "Your tiny home is almost ready",
   endBody: "We’ll let you know the day you can move in.",
@@ -283,7 +284,7 @@ const ko: TinyCopy = {
     ["장거리 연애인데 괜찮을까요?", "딱이에요. 일정도 시차도 안 맞을 때, 하루 한 질문이면 대화가 이어져요."],
     ["우리 답은 누가 볼 수 있나요?", "둘만 봐요. 내 답은 상대도 답할 때까지 숨겨져요."],
     ["상대가 아직 안 들어왔으면요?", "먼저 시작해도 돼요. 오늘의 질문에 답해 두면, 상대가 들어왔을 때 볼 수 있어요."],
-    ["어디서 받을 수 있나요?", "지금 Google Play에서 무료로 받을 수 있어요. App Store에도 곧 나와요. 팔로우해 두면 나오는 날 알려드릴게요."],
+    ["어디서 받을 수 있나요?", "App Store와 Google Play에서 무료로 받을 수 있어요."],
   ],
   endTitle: "작은 집이 거의 다 준비됐어요",
   endBody: "이사 올 수 있는 날, 바로 알려드릴게요.",
