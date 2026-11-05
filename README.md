@@ -30,7 +30,7 @@ in `tailwind.config.js` + `.tu` CSS variables in `styles/globals.css`, light + d
   secret-note-main (`python3 make_site_art.py ~/Development/miuu-studio-site`); rerun it instead of editing the PNGs
 - `tinyus-links/` — apple-app-site-association + assetlinks.json, prepared but **not shipped** (see its README)
 
-Launch day: fill `TINYUS.store`, add the official badge artwork, flip `TINYUS_LAUNCHED`, switch Instagram to @tinyus.app.
+Launched: on Google Play since 2026-10-18 and the App Store since 2026-11-05 (`TINYUS_LAUNCHED`, `TINYUS_ON_APP_STORE`). Still to do: the official badge artwork, and switching Instagram to @tinyus.app.
 
 ## Tiny Spa (`/tinyspa`)
 

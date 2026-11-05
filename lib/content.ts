@@ -254,7 +254,10 @@ export const APPS: App[] = [
     },
     icon: "/apps/tiny-us-icon.webp?v=2",
     shots: [],
-    links: [{ label: "Google Play", href: "https://play.google.com/store/apps/details?id=com.miuustudio.tinyus" }],
+    links: [
+      { label: "App Store", href: "https://apps.apple.com/app/id6822101689" },
+      { label: "Google Play", href: "https://play.google.com/store/apps/details?id=com.miuustudio.tinyus" },
+    ],
     status: "live",
     bg: "bg-blush",
   },
